@@ -32,7 +32,7 @@
     </header>
 
     <main id="main-content">
-
+        <!-- Section Accueil -->
         <section id="accueil" class="page-section active">
             <div class="hero">
                 <div class="container hero-content">
@@ -48,6 +48,7 @@
             </div>
         </section>
 
+        <!-- Section À Propos -->
         <section id="a-propos" class="page-section">
             <div class="page-content">
                  <div class="container about-container-wrapper">
@@ -73,6 +74,7 @@
             </div>
         </section>
         
+        <!-- Section Projets -->
         <section id="projets" class="page-section">
              <div class="page-content projects-section">
                 <div class="container">
@@ -114,25 +116,51 @@
                 </div>
             </div>
         </section>
-
+        
+        <!-- Section Contact -->
         <section id="contact" class="page-section">
-            <div class="page-content">
-                <div class="container contact-container">
-                    <div class="contact-info">
-                        <h2 class="section-title">Un projet en tête ?<br>Discutons-en.</h2>
-                        <p>Je suis toujours ouvert à de nouvelles opportunités et collaborations.</p>
-                        <div class="contact-socials">
-                             <a href="#"><i data-feather="linkedin"></i></a>
-                             <a href="#"><i data-feather="github"></i></a>
-                             <a href="#"><i data-feather="dribbble"></i></a>
-                        </div>
+            <div class="page-content contact-page">
+                 <div class="container">
+                    <div class="contact-header text-center">
+                        <h2 class="section-title">Contactez-moi à tout moment</h2>
+                        <p class="contact-subtitle">Vous avez une question ou souhaitez simplement discuter ? N'hésitez pas.</p>
                     </div>
-                    <div class="contact-card">
-                        <p>Envoyez-moi un message</p>
-                        <h3 id="email-text">adrienonillon12@gmail.com</h3>
-                        <button id="copy-email-btn" class="cta-button">
-                            <i data-feather="copy"></i> Copier l'adresse
-                        </button>
+                    <div class="contact-grid">
+                        <!-- Option 1: Socials -->
+                        <div class="contact-option-card">
+                            <div class="contact-icon"><i data-feather="message-square"></i></div>
+                            <h3>Réseaux Sociaux</h3>
+                            <p>Le meilleur moyen pour un premier contact rapide.</p>
+                            <div class="contact-socials">
+                                 <a href="#" data-magnetic><i data-feather="linkedin"></i></a>
+                                 <a href="#" data-magnetic><i data-feather="github"></i></a>
+                                 <a href="#" data-magnetic><i data-feather="dribbble"></i></a>
+                            </div>
+                        </div>
+                        <!-- Option 2: Email -->
+                        <div class="contact-option-card">
+                            <div class="contact-icon"><i data-feather="mail"></i></div>
+                            <h3>Email</h3>
+                            <p>Pour les demandes plus détaillées et les documents.</p>
+                            <div class="email-box">
+                                <span id="email-text">adrienonillon12@gmail.com</span>
+                                <button id="copy-email-btn" title="Copier l'adresse email">
+                                    <i data-feather="copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Option 3: Call -->
+                        <div class="contact-option-card">
+                            <div class="contact-icon"><i data-feather="calendar"></i></div>
+                            <h3>Planifier un appel</h3>
+                            <p>Idéal pour discuter en détail d'un projet.</p>
+                            <div class="phone-box">
+                                <span id="phone-text">06 71 17 26 93</span>
+                                <button id="copy-phone-btn" title="Copier le numéro">
+                                    <i data-feather="copy"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,3 +185,4 @@
     </script>
 </body>
 </html>
+

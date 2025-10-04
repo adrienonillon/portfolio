@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector('.cursor');
     const copyEmailBtn = document.getElementById('copy-email-btn');
     const emailText = document.getElementById('email-text');
+    const copyPhoneBtn = document.getElementById('copy-phone-btn');
+    const phoneText = document.getElementById('phone-text');
 
     // --- CURSOR ANIMATION ---
     document.addEventListener('mousemove', e => {
@@ -14,26 +16,90 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.left = e.clientX + 'px';
     });
 
-    document.querySelectorAll('a, button, .project-card, .skill-item').forEach(el => {
+    document.querySelectorAll('a, button, .project-card, .skill-item, .contact-option-card').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
     
-    // --- EMAIL COPY FUNCTION ---
-    if(copyEmailBtn && emailText) {
-        copyEmailBtn.addEventListener('click', () => {
-            const email = emailText.textContent;
-            navigator.clipboard.writeText(email).then(() => {
-                copyEmailBtn.innerHTML = '<i data-feather="check"></i> Copié !';
-                feather.replace();
-                setTimeout(() => {
-                    copyEmailBtn.innerHTML = '<i data-feather="copy"></i> Copier l\'adresse';
+    // --- COPY FUNCTIONS ---
+    function setupCopyButton(button, textElement, successMessage = 'Copié !') {
+        if(button && textElement) {
+            button.addEventListener('click', async () => {
+                const text = textElement.textContent.trim();
+                try {
+                    await navigator.clipboard.writeText(text);
+                    
+                    // Visual feedback
+                    button.classList.add('copied');
+                    const originalHTML = button.innerHTML;
+                    button.innerHTML = '<i data-feather="check"></i>';
                     feather.replace();
-                }, 2000);
+                    
+                    // Show temporary tooltip
+                    const tooltip = document.createElement('div');
+                    tooltip.textContent = successMessage;
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        top: -35px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: var(--primary-color);
+                        color: white;
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        white-space: nowrap;
+                        z-index: 1000;
+                        opacity: 0;
+                        transition: opacity 0.2s ease;
+                    `;
+                    button.style.position = 'relative';
+                    button.appendChild(tooltip);
+                    
+                    // Animate tooltip
+                    setTimeout(() => tooltip.style.opacity = '1', 10);
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.innerHTML = originalHTML;
+                        feather.replace();
+                        if(tooltip.parentNode) {
+                            tooltip.remove();
+                        }
+                    }, 2000);
+                    
+                } catch (err) {
+                    console.error('Erreur lors de la copie:', err);
+                    // Fallback for older browsers
+                    textElement.select();
+                    document.execCommand('copy');
+                }
             });
-        });
+        }
     }
 
+    // Setup copy buttons
+    setupCopyButton(copyEmailBtn, emailText, 'Email copié !');
+    setupCopyButton(copyPhoneBtn, phoneText, 'Numéro copié !');
+
+    // --- MAGNETIC EFFECT ---
+    const magneticElements = document.querySelectorAll('[data-magnetic]');
+    magneticElements.forEach(el => {
+        const strength = 40;
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const { left, top, width, height } = rect;
+            const x = e.clientX - left;
+            const y = e.clientY - top;
+            const moveX = (x - width / 2) / width * strength;
+            const moveY = (y - height / 2) / height * strength;
+            el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'translate(0, 0)';
+        });
+    });
 
     // --- NAVIGATION LOGIC ---
     function moveSlider(targetLink) {
