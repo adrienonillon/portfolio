@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrien Onillon - Portfolio Dynamique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="aurora-background">
+        <div class="aurora-shape shape1"></div>
+        <div class="aurora-shape shape2"></div>
+        <div class="aurora-shape shape3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <a href="#accueil" class="logo">Adrien Onillon</a>
+            <nav class="main-nav">
+                <div class="nav-slider"></div>
+                <a href="#accueil" class="nav-link active">Accueil</a>
+                <a href="#a-propos" class="nav-link">À propos</a>
+                <a href="#projets" class="nav-link">Projets</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <section id="accueil" class="page-section active">
+            <div class="hero">
+                <div class="container hero-content">
+                    <h1 class="hero-title">
+                        Créateur d'Interfaces <br>
+                        <span class="highlight-text">Digitales & Modernes</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Je suis Adrien Onillon, un développeur spécialisé dans la conception d'expériences web élégantes et performantes qui marquent les esprits.
+                    </p>
+                    <a href="#projets" class="cta-button page-transition-link">Voir mes réalisations</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="a-propos" class="page-section">
+            <div class="page-content">
+                 <div class="container about-container-wrapper">
+                    <div class="about-card">
+                        <div class="about-image">
+                            <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon">
+                        </div>
+                        <div class="about-text">
+                            <h2 class="section-title">Ma philosophie</h2>
+                            <p>Passionné par l'intersection du design et de la technologie, je m'efforce de créer des sites web qui ne sont pas seulement fonctionnels, mais aussi une source de plaisir visuel. Chaque ligne de code, chaque pixel est pensé pour servir une expérience utilisateur intuitive et mémorable.</p>
+                            <p class="skills-title">Mes outils de prédilection :</p>
+                            <div class="skills-grid">
+                                <div class="skill-item"><i data-feather="figma"></i><span>Figma</span></div>
+                                <div class="skill-item"><i data-feather="code"></i><span>VS Code</span></div>
+                                <div class="skill-item"><i data-feather="database"></i><span>MongoDB</span></div>
+                                <div class="skill-item"><i data-feather="pen-tool"></i><span>Suite Adobe</span></div>
+                                <div class="skill-item"><i data-feather="github"></i><span>Git & GitHub</span></div>
+                                <div class="skill-item"><i data-feather="globe"></i><span>Node.js</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projets" class="page-section">
+             <div class="page-content projects-section">
+                <div class="container">
+                    <h2 class="section-title text-center">Projets Sélectionnés</h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Un" alt="Projet Un"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">Plateforme E-commerce</h3>
+                                <p class="project-description">Refonte complète d'une boutique en ligne pour améliorer la conversion et l'expérience utilisateur.</p>
+                                <div class="project-tags"><span>UI/UX Design</span><span>Développement Web</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Deux" alt="Projet Deux"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">Application SaaS</h3>
+                                <p class="project-description">Création d'un tableau de bord analytique pour une startup technologique.</p>
+                                <div class="project-tags"><span>Interface</span><span>Dataviz</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Trois" alt="Projet Trois"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">Site Vitrine</h3>
+                                <p class="project-description">Conception d'un site immersif pour un studio d'architecture de renom.</p>
+                                <div class="project-tags"><span>Web Design</span><span>Animations CSS</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Quatre" alt="Projet Quatre"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">Blog Minimaliste</h3>
+                                <p class="project-description">Développement d'un thème de blog axé sur la lisibilité et la performance.</p>
+                                <div class="project-tags"><span>Frontend</span><span>SEO</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <div class="page-content">
+                <div class="container contact-container">
+                    <div class="contact-info">
+                        <h2 class="section-title">Un projet en tête ?<br>Discutons-en.</h2>
+                        <p>Je suis toujours ouvert à de nouvelles opportunités et collaborations.</p>
+                        <div class="contact-socials">
+                             <a href="#"><i data-feather="linkedin"></i></a>
+                             <a href="#"><i data-feather="github"></i></a>
+                             <a href="#"><i data-feather="dribbble"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <p>Envoyez-moi un message</p>
+                        <h3 id="email-text">adrienonillon12@gmail.com</h3>
+                        <button id="copy-email-btn" class="cta-button">
+                            <i data-feather="copy"></i> Copier l'adresse
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Adrien Onillon. Tous droits réservés.</p>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Dribbble</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+      feather.replace()
+    </script>
+</body>
+</html>
