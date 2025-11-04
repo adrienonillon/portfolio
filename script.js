@@ -170,4 +170,55 @@ document.addEventListener('DOMContentLoaded', () => {
     pageSections.forEach(section => {
         observer.observe(section, { attributes: true });
     });
+
+    // --- TYPING ANIMATION FOR HERO H1 ---
+    (function() {
+        const typedEl = document.getElementById('typed-text');
+        if (!typedEl) return;
+
+    const roles = ['Monteur Vidéo', '3D artist', 'Web designer', 'Graphiste'];
+        const typingSpeed = 120; 
+        const erasingSpeed = 40;
+        const pauseBetween = 1400; 
+
+        let roleIndex = 0;
+        let charIndex = 0;
+
+        const wait = (ms) => new Promise(res => setTimeout(res, ms));
+
+        // Respect user's reduced-motion preference
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            typedEl.textContent = roles[0];
+            return;
+        }
+
+        async function typeLoop() {
+            while (true) {
+                const current = roles[roleIndex];
+
+                // type
+                while (charIndex < current.length) {
+                    typedEl.textContent += current.charAt(charIndex);
+                    charIndex++;
+                    await wait(typingSpeed);
+                }
+
+                await wait(pauseBetween);
+
+                // erase
+                while (charIndex > 0) {
+                    typedEl.textContent = current.substring(0, charIndex - 1);
+                    charIndex--;
+                    await wait(erasingSpeed);
+                }
+
+                // next role
+                roleIndex = (roleIndex + 1) % roles.length;
+                await wait(300);
+            }
+        }
+
+        // start when DOM is ready
+        typeLoop().catch(err => console.error('Typing error:', err));
+    })();
 });

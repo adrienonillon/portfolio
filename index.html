@@ -1,188 +1,256 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adrien Onillon - Portfolio Dynamique</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="cursor"></div>
     <div class="aurora-background">
-        <div class="aurora-shape shape1"></div>
-        <div class="aurora-shape shape2"></div>
-        <div class="aurora-shape shape3"></div>
+      <div class="aurora-shape shape1"></div>
+      <div class="aurora-shape shape2"></div>
+      <div class="aurora-shape shape3"></div>
     </div>
 
     <header class="header">
-        <div class="container">
-            <a href="#accueil" class="logo">Adrien Onillon</a>
-            <nav class="main-nav">
-                <div class="nav-slider"></div>
-                <a href="#accueil" class="nav-link active">Accueil</a>
-                <a href="#a-propos" class="nav-link">À propos</a>
-                <a href="#projets" class="nav-link">Projets</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="#accueil" class="logo">Adrien Onillon</a>
+        <nav class="main-nav">
+          <div class="nav-slider"></div>
+          <a href="#accueil" class="nav-link active">Accueil</a>
+          <a href="#a-propos" class="nav-link">À propos</a>
+          <a href="#projets" class="nav-link">Projets</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+      </div>
     </header>
 
     <main id="main-content">
-        <!-- Section Accueil -->
-        <section id="accueil" class="page-section active">
-            <div class="hero">
-                <div class="container hero-content">
-                    <h1 class="hero-title">
-                        Créateur d'Interfaces <br>
-                        <span class="highlight-text">Digitales & Modernes</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        Je suis Adrien Onillon, un développeur spécialisé dans la conception d'expériences web élégantes et performantes qui marquent les esprits.
-                    </p>
-                    <a href="#projets" class="cta-button page-transition-link">Voir mes réalisations</a>
-                </div>
-            </div>
-        </section>
+      <section id="accueil" class="page-section active">
+        <div class="hero">
+          <div class="container hero-content">
+            <h1 class="hero-title">
+              Adrien
+              <span class="highlight-text">Onillon</span>
+            </h1>
+            <h1 class="hero-subtitle" aria-live="polite">
+              <span id="typed-text" aria-hidden="true"></span
+              ><span class="typed-cursor" aria-hidden="true">|</span>
+              <span class="visually-hidden"
+                >Monteur Vidéo, 3D artist, Web designer, Graphiste</span
+              >
+            </h1>
+            <a href="#projets" class="cta-button page-transition-link">
+              Voir mes réalisations <i data-feather="arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
 
-        <!-- Section À Propos -->
-        <section id="a-propos" class="page-section">
-            <div class="page-content">
-                 <div class="container about-container-wrapper">
-                    <div class="about-card">
-                        <div class="about-image">
-                            <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon">
-                        </div>
-                        <div class="about-text">
-                            <h2 class="section-title">Ma philosophie</h2>
-                            <p>Passionné par l'intersection du design et de la technologie, je m'efforce de créer des sites web qui ne sont pas seulement fonctionnels, mais aussi une source de plaisir visuel. Chaque ligne de code, chaque pixel est pensé pour servir une expérience utilisateur intuitive et mémorable.</p>
-                            <p class="skills-title">Mes outils de prédilection :</p>
-                            <div class="skills-grid">
-                                <div class="skill-item"><i data-feather="figma"></i><span>Figma</span></div>
-                                <div class="skill-item"><i data-feather="code"></i><span>VS Code</span></div>
-                                <div class="skill-item"><i data-feather="database"></i><span>MongoDB</span></div>
-                                <div class="skill-item"><i data-feather="pen-tool"></i><span>Suite Adobe</span></div>
-                                <div class="skill-item"><i data-feather="github"></i><span>Git & GitHub</span></div>
-                                <div class="skill-item"><i data-feather="globe"></i><span>Node.js</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section Projets -->
-        <section id="projets" class="page-section">
-             <div class="page-content projects-section">
-                <div class="container">
-                    <h2 class="section-title text-center">Projets Sélectionnés</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Un" alt="Projet Un"></div>
-                            <div class="project-info">
-                                <h3 class="project-title">Plateforme E-commerce</h3>
-                                <p class="project-description">Refonte complète d'une boutique en ligne pour améliorer la conversion et l'expérience utilisateur.</p>
-                                <div class="project-tags"><span>UI/UX Design</span><span>Développement Web</span></div>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Deux" alt="Projet Deux"></div>
-                            <div class="project-info">
-                                <h3 class="project-title">Application SaaS</h3>
-                                <p class="project-description">Création d'un tableau de bord analytique pour une startup technologique.</p>
-                                <div class="project-tags"><span>Interface</span><span>Dataviz</span></div>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Trois" alt="Projet Trois"></div>
-                            <div class="project-info">
-                                <h3 class="project-title">Site Vitrine</h3>
-                                <p class="project-description">Conception d'un site immersif pour un studio d'architecture de renom.</p>
-                                <div class="project-tags"><span>Web Design</span><span>Animations CSS</span></div>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image"><img src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Quatre" alt="Projet Quatre"></div>
-                            <div class="project-info">
-                                <h3 class="project-title">Blog Minimaliste</h3>
-                                <p class="project-description">Développement d'un thème de blog axé sur la lisibilité et la performance.</p>
-                                <div class="project-tags"><span>Frontend</span><span>SEO</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section Contact -->
-        <section id="contact" class="page-section">
-            <div class="page-content contact-page">
-                 <div class="container">
-                    <div class="contact-header text-center">
-                        <h2 class="section-title">Contactez-moi à tout moment</h2>
-                        <p class="contact-subtitle">Vous avez une question ou souhaitez simplement discuter ? N'hésitez pas.</p>
-                    </div>
-                    <div class="contact-grid">
-                        <!-- Option 1: Socials -->
-                        <div class="contact-option-card">
-                            <div class="contact-icon"><i data-feather="message-square"></i></div>
-                            <h3>Réseaux Sociaux</h3>
-                            <p>Le meilleur moyen pour un premier contact rapide.</p>
-                            <div class="contact-socials">
-                                 <a href="#" data-magnetic><i data-feather="linkedin"></i></a>
-                                 <a href="#" data-magnetic><i data-feather="github"></i></a>
-                                 <a href="#" data-magnetic><i data-feather="dribbble"></i></a>
-                            </div>
-                        </div>
-                        <!-- Option 2: Email -->
-                        <div class="contact-option-card">
-                            <div class="contact-icon"><i data-feather="mail"></i></div>
-                            <h3>Email</h3>
-                            <p>Pour les demandes plus détaillées et les documents.</p>
-                            <div class="email-box">
-                                <span id="email-text">adrienonillon12@gmail.com</span>
-                                <button id="copy-email-btn" title="Copier l'adresse email">
-                                    <i data-feather="copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Option 3: Call -->
-                        <div class="contact-option-card">
-                            <div class="contact-icon"><i data-feather="calendar"></i></div>
-                            <h3>Planifier un appel</h3>
-                            <p>Idéal pour discuter en détail d'un projet.</p>
-                            <div class="phone-box">
-                                <span id="phone-text">06 71 17 26 93</span>
-                                <button id="copy-phone-btn" title="Copier le numéro">
-                                    <i data-feather="copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Section À Propos -->
+      <section id="a-propos" class="page-section">
+        <div class="page-content">
+          <div class="container about-container-wrapper">
+            <div class="about-card">
+              <div class="about-image">
+                <img
+                  src="./assets/photo-présentation.png"
+                  alt="Portrait de Adrien Onillon"
+                />
+              </div>
+              <div class="about-text">
+                <h2 class="section-title">À propos</h2>
+                <p>
+                  Actuellement en deuxième année de BUT MMI (Métiers du Multimédia et de l'Internet) à Limoges, je me consacre au développement de mes compétences en montage vidéo, 3D, design graphique et web design.
+                </p>
 
+                <p>
+                  Mon objectif est de rejoindre une équipe dynamique pour participer à des projets innovants, mettre en pratique mes acquis et continuer à développer mes compétences technique et ma vision créative.
+                </p>
+                <p class="skills-title">Outils maîtrisés</p>
+                <div class="skills-grid">
+                  <div class="skill-item">
+                    <i data-feather=""></i><span>Davinci Resolve</span>
+                  </div>
+                  <div class="skill-item">
+                    <i data-feather="blender"></i><span>Blender</span>
+                  </div>
+                  <div class="skill-item">
+                    <i data-feather="figma"></i><span>Figma</span>
+                  </div>
+                  <div class="skill-item">
+                    <i data-feather="pen-tool"></i><span>Suite Adobe</span>
+                  </div>
+                  <div class="skill-item">
+                    <i data-feather="code"></i><span>VS Code</span>
+                  </div>
+                  <div class="skill-item">
+                    <i data-feather="ai"></i><span>AI</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Projets -->
+      <section id="projets" class="page-section">
+        <div class="page-content projects-section">
+          <div class="container">
+            <h2 class="section-title text-center">En cours de mise en ligne</h2>
+            <!-- <div class="projects-grid">
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Un"
+                    alt="Projet Un"
+                  />
+                </div>
+                <div class="project-info">
+                  <h3 class="project-title">Plateforme E-commerce</h3>
+                  <p class="project-description">
+                    Refonte complète d'une boutique en ligne pour améliorer la
+                    conversion et l'expérience utilisateur.
+                  </p>
+                  <div class="project-tags">
+                    <span>UI/UX Design</span><span>Développement Web</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Deux"
+                    alt="Projet Deux"
+                  />
+                </div>
+                <div class="project-info">
+                  <h3 class="project-title">Application SaaS</h3>
+                  <p class="project-description">
+                    Création d'un tableau de bord analytique pour une startup
+                    technologique.
+                  </p>
+                  <div class="project-tags">
+                    <span>Interface</span><span>Dataviz</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Trois"
+                    alt="Projet Trois"
+                  />
+                </div>
+                <div class="project-info">
+                  <h3 class="project-title">Site Vitrine</h3>
+                  <p class="project-description">
+                    Conception d'un site immersif pour un studio d'architecture
+                    de renom.
+                  </p>
+                  <div class="project-tags">
+                    <span>Web Design</span><span>Animations CSS</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://placehold.co/600x400/1F2937/9CA3AF?text=Projet+Quatre"
+                    alt="Projet Quatre"
+                  />
+                </div>
+                <div class="project-info">
+                  <h3 class="project-title">Blog Minimaliste</h3>
+                  <p class="project-description">
+                    Développement d'un thème de blog axé sur la lisibilité et la
+                    performance.
+                  </p>
+                  <div class="project-tags">
+                    <span>Frontend</span><span>SEO</span>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+
+
+      <section id="contact" class="page-section">
+        <div class="page-content contact-page">
+          <div class="container">
+            <div class="contact-header text-center">
+              <h2 class="section-title">Contactez-moi à tout moment</h2>
+              <p class="contact-subtitle">
+                Vous avez une question ou souhaitez simplement discuter ?
+                N'hésitez pas.
+              </p>
+            </div>
+            <div class="contact-grid">
+
+              <div class="contact-option-card">
+                <div class="contact-icon">
+                  <i data-feather="message-square"></i>
+                </div>
+                <h3>Réseaux Sociaux</h3>
+                <p>Le meilleur moyen pour un premier contact rapide.</p>
+                <div class="contact-socials">
+                  <a href="https://www.linkedin.com/in/adrien-onillon-7bb121332/" data-magnetic><i data-feather="linkedin"></i></a>
+                  <a href="https://github.com/adrienonillon" data-magnetic><i data-feather="github"></i></a>
+                </div>
+              </div>
+              <!-- Option 2: Email -->
+              <div class="contact-option-card">
+                <div class="contact-icon"><i data-feather="mail"></i></div>
+                <h3>Email</h3>
+                <div class="email-box">
+                  <span id="email-text">adrienonillon12@gmail.com</span>
+                  <button id="copy-email-btn" title="Copier l'adresse email">
+                    <i data-feather="copy"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- Option 3: Call -->
+              <div class="contact-option-card">
+                <div class="contact-icon"><i data-feather="calendar"></i></div>
+                <h3>Planifier un appel</h3>
+                <div class="phone-box">
+                  <span id="phone-text">06 71 17 26 93</span>
+                  <button id="copy-phone-btn" title="Copier le numéro">
+                    <i data-feather="copy"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Adrien Onillon. Tous droits réservés.</p>
-            <div class="social-links">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="#">Dribbble</a>
-            </div>
+      <div class="container">
+        <p>&copy; 2024 Adrien Onillon. Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/adrien-onillon-7bb121332/">LinkedIn</a>
+          <a href="https://github.com/adrienonillon">GitHub</a>
         </div>
+      </div>
     </footer>
-    
+
     <script src="script.js"></script>
     <script>
-      feather.replace()
+      feather.replace();
     </script>
-</body>
+  </body>
 </html>
-
