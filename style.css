@@ -142,13 +142,13 @@ main {
     transition: opacity var(--transition-speed) var(--transition-easing), transform var(--transition-speed) var(--transition-easing);
 }
 
-/* Vertically center pages with little content */
-#accueil, #contact {
+
+#accueil, #contact, #a-propos {
     align-items: center;
 }
 
-/* Align scrolling pages to the top */
-#a-propos, #projets {
+
+#projets {
      align-items: flex-start;
 }
 
