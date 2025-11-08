@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Déploiement du portfolio
 
 on:
   # Runs on pushes targeting the default branch
