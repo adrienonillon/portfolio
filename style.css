@@ -351,13 +351,37 @@ main {
 .skill-item:hover { color: var(--primary-color); transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 .skill-item i { width: 24px; height: 24px; }
 
-/* --- PROJECTS SECTION --- */
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
+.project-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-bottom-right-radius: 12px; 
+    border-top-left-radius: 12px; 
+    z-index: 5;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-color);
+}
+
+
+.project-badge.universitaire {
+    background-color: var(--primary-color);
+}
+
+.project-badge.personnel {
+    background-color: #7510b9; 
+}
 .project-card {
+    position: relative;
     background: rgba(17, 24, 39, 0.5);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
