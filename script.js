@@ -263,14 +263,14 @@ const projectDetails = {
     description: "Réalisation de deux jeux de tarot dans deux styles différents et sur deux logiciels différents.",
     link: "https://www.figma.com/design/0lPjSwPW6Yi01yEBHlK8uA/SAE-102-106?node-id=0-1"
   },
-  "proj-4": {
-    title: "Stop Motion Waitrose",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/aLkTCHfC77Y?si=rTb2PC7Q_gZveNwX",
-    tags: ["Vidéo", "Montage", "DaVinci Resolve", "Prise de vue"],
-    description: "",
-    link: "https://www.youtube.com/watch?v=aLkTCHfC77Y"
-  },
+  // "proj-4": {
+  //   title: "Stop Motion Waitrose",
+  //   type: "youtube",
+  //   url: "https://www.youtube.com/embed/aLkTCHfC77Y?si=rTb2PC7Q_gZveNwX",
+  //   tags: ["Vidéo", "Montage", "DaVinci Resolve", "Prise de vue"],
+  //   description: "",
+  //   link: "https://www.youtube.com/watch?v=aLkTCHfC77Y"
+  // },
   "proj-5": {
     title: "Start up fictive - Loc'sur",
     type: "web",
