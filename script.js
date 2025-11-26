@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typedEl = document.getElementById("typed-text");
     if (!typedEl) return;
 
-    const roles = ["Monteur Vidéo", "3D artist", "Web designer", "Graphiste"];
+    const roles = ["Monteur Vidéo", "3D Artist", "Motion Designer", "Graphiste", "Web designer"];
     const typingSpeed = 120;
     const erasingSpeed = 40;
     const pauseBetween = 1400;
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    // Respect user's reduced-motion preference
+   
     if (
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -217,64 +217,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await wait(pauseBetween);
 
-        // erase
+
         while (charIndex > 0) {
           typedEl.textContent = current.substring(0, charIndex - 1);
           charIndex--;
           await wait(erasingSpeed);
         }
 
-        // next role
+  
         roleIndex = (roleIndex + 1) % roles.length;
         await wait(300);
       }
     }
 
-    // start when DOM is ready
+
     typeLoop().catch((err) => console.error("Typing error:", err));
   })();
 
-  /* --- LOGIQUE DE LA PAGE DÉTAIL PROJET --- */
 
-// 1. Base de données des projets
-// J'ai ajouté un 'type' (youtube, figma, web, image) et une 'url'
 const projectDetails = {
   "proj-1": {
     title: "Prototype page behance",
-    type: "figma",
-    url: "https://www.figma.com/proto/YoBh7IDv461G4lTq2hMRQO/SAE-101?node-id=2209-374&t=wdg5WnOhF2okBX6L-0",
+    type: "image",
+    url: "./assets/Behance.png",
     tags: ["Figma", "UI Design", "UX Research"],
     description: "",
     link: "https://www.figma.com/proto/YoBh7IDv461G4lTq2hMRQO/SAE-101?node-id=2209-374&t=wdg5WnOhF2okBX6L-0"
   },
-  "proj-2": {
-    title: "Promotion de l'expérience VR du site Anne-Frank",
-    type: "figma",
-    url: "https://www.figma.com/design/0lPjSwPW6Yi01yEBHlK8uA/SAE-102-106?node-id=0-1",
-    tags: ["Figma", "Design Graphique", "Branding"],
-    description: "",
-    link: "https://www.figma.com/design/0lPjSwPW6Yi01yEBHlK8uA/SAE-102-106?node-id=0-1"
-  },
-  "proj-3": {
-    title: "Réalisation de jeux de Tarot",
-    type: "figma",
-    url: "https://www.figma.com/design/0lPjSwPW6Yi01yEBHlK8uA/SAE-102-106?node-id=0-1",
-    tags: ["Figma", "Design Graphique", "Branding"],
-    description: "Réalisation de deux jeux de tarot dans deux styles différents et sur deux logiciels différents.",
-    link: "https://www.figma.com/design/0lPjSwPW6Yi01yEBHlK8uA/SAE-102-106?node-id=0-1"
-  },
-  // "proj-4": {
-  //   title: "Stop Motion Waitrose",
-  //   type: "youtube",
-  //   url: "https://www.youtube.com/embed/aLkTCHfC77Y?si=rTb2PC7Q_gZveNwX",
-  //   tags: ["Vidéo", "Montage", "DaVinci Resolve", "Prise de vue"],
-  //   description: "",
-  //   link: "https://www.youtube.com/watch?v=aLkTCHfC77Y"
-  // },
   "proj-5": {
     title: "Start up fictive - Loc'sur",
     type: "web",
-    url: "", 
+    url: "./assets/loc'sur.png", 
     tags: ["JS", "HTML", "CSS"],
     description: "",
     link: "https://www.a-onillon.mmi-limoges.fr/"
@@ -290,10 +263,18 @@ const projectDetails = {
   "proj-7": {
     title: "Site de Streaming",
     type: "web",
-    url: "https://placehold.co/1000x600/1F2937/9CA3AF?text=Screenshot+Site+PHP",
+    url: "./assets/site-streaming.png",
     tags: ["HTML", "CSS", "PHP", "JavaScript", "Back-end"],
     description: "",
     link: "https://onillon-sae203.mmi-limoges.fr/"
+  },
+  "proj-8": {
+    title: "Olive Oil",
+    type: "image",
+    url: "./assets/olive-oil.png",
+    tags: ["Figma", "UI Design", "UX Research"],
+    description: "",
+    link: ""
   },
 };
 
