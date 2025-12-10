@@ -9,34 +9,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const copyPhoneBtn = document.getElementById("copy-phone-btn");
   const phoneText = document.getElementById("phone-text");
 
-  // --- CURSOR ANIMATION ---
-  document.addEventListener("mousemove", (e) => {
-
-    // --- GESTION DU MENU MOBILE ---
+  // --- MENU MOBILE ---
   const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
   const mainNav = document.querySelector(".main-nav");
   const mobileLinks = document.querySelectorAll(".main-nav .nav-link");
 
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener("click", () => {
-      // Toggle la classe pour faire glisser le menu
+      // Basculer la classe 'open'
       mainNav.classList.toggle("open");
       
-      // Gestion de l'icône et du scroll
+      // Changer l'icône (Menu <-> Croix)
       if (mainNav.classList.contains("open")) {
         mobileMenuBtn.innerHTML = '<i data-feather="x"></i>';
-        mobileMenuBtn.style.color = "var(--primary-color)"; // Mettre la croix en couleur
-        document.body.style.overflow = "hidden"; // Bloque le scroll
+        mobileMenuBtn.style.color = "var(--primary-color)";
+        document.body.style.overflow = "hidden"; // Bloque le scroll du body
       } else {
         mobileMenuBtn.innerHTML = '<i data-feather="menu"></i>';
-        mobileMenuBtn.style.color = ""; 
+        mobileMenuBtn.style.color = "";
         document.body.style.overflow = ""; // Réactive le scroll
       }
-      feather.replace(); // Recharge les icônes
+      feather.replace();
     });
   }
 
-  // Fermer le menu au clic sur un lien
+  // Fermer le menu quand on clique sur un lien
   mobileLinks.forEach(link => {
     link.addEventListener("click", () => {
       if (window.innerWidth <= 768) {
@@ -49,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --- CURSOR ANIMATION ---
+  document.addEventListener("mousemove", (e) => {
     cursor.style.top = e.clientY + "px";
     cursor.style.left = e.clientX + "px";
   });
@@ -145,21 +144,37 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveSlider(targetLink) {
     if (!targetLink) return;
     const nav = targetLink.parentElement;
+    // On s'assure que le nav est visible pour faire les calculs
+    if(nav.offsetParent === null) return;
+    
     const targetRect = targetLink.getBoundingClientRect();
     const navRect = nav.getBoundingClientRect();
     navSlider.style.width = `${targetRect.width}px`;
     navSlider.style.left = `${targetRect.left - navRect.left}px`;
   }
 
+  // Fonction pour gérer le scroll intelligent
   function switchPage(targetId) {
     const targetSection = document.getElementById(targetId);
     const activeSection = document.querySelector(".page-section.active");
+
     if (targetSection === activeSection) return;
+
+    // Animation de sortie
     if (activeSection) {
       activeSection.classList.add("exit");
       activeSection.classList.remove("active");
     }
+
+    // Animation d'entrée
     targetSection.classList.add("active");
+    
+    // SCROLL INTELLIGENT :
+    // Remonter en haut sauf pour "projets"
+    if (targetId === 'a-propos' || targetId === 'contact' || targetId === 'accueil') {
+        targetSection.scrollTo(0, 0);
+    }
+    
     setTimeout(() => {
       if (activeSection) {
         activeSection.classList.remove("exit");
@@ -170,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const initialActiveLink = document.querySelector(
     ".main-nav .nav-link.active"
   );
+  // Premier calcul immédiat
   moveSlider(initialActiveLink);
 
   const allLinks = [...navLinks, ...ctaLinks];
@@ -233,7 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
-   
     if (
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -245,30 +260,21 @@ document.addEventListener("DOMContentLoaded", () => {
     async function typeLoop() {
       while (true) {
         const current = roles[roleIndex];
-
-        // type
         while (charIndex < current.length) {
           typedEl.textContent += current.charAt(charIndex);
           charIndex++;
           await wait(typingSpeed);
         }
-
         await wait(pauseBetween);
-
-
         while (charIndex > 0) {
           typedEl.textContent = current.substring(0, charIndex - 1);
           charIndex--;
           await wait(erasingSpeed);
         }
-
-  
         roleIndex = (roleIndex + 1) % roles.length;
         await wait(300);
       }
     }
-
-
     typeLoop().catch((err) => console.error("Typing error:", err));
   })();
 
@@ -316,7 +322,6 @@ const projectDetails = {
   },
 };
 
-// 2. Sélection des éléments de la page détail
 const detailPage = document.getElementById('projet-detail');
 const detailTitle = document.getElementById('detail-title');
 const detailMedia = document.getElementById('detail-media');
@@ -325,38 +330,30 @@ const detailDescription = document.getElementById('detail-description');
 const detailLink = document.getElementById('detail-link');
 const backToProjectsBtn = document.getElementById('back-to-projets-btn');
 
-
-// 3. Fonction pour afficher la page détail
 function showProjectDetail(projectId) {
   const project = projectDetails[projectId];
   if (!project) return;
 
-  // Remplir les données
   detailTitle.textContent = project.title;
   detailDescription.textContent = project.description;
   detailLink.href = project.link;
 
-  // Gérer le média (Image, YouTube, Figma, etc.)
-  detailMedia.innerHTML = ''; // Vider le conteneur
+  detailMedia.innerHTML = '';
   if (project.type === 'youtube') {
     detailMedia.innerHTML = `<iframe src="${project.url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   } else if (project.type === 'figma') {
-    // Crée l'URL d'embed Figma
     const figmaEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.url)}`;
     detailMedia.innerHTML = `<iframe src="${figmaEmbedUrl}" allowfullscreen></iframe>`;
   } else {
-    // 'web' ou 'image' (on affiche une image/screenshot)
     detailMedia.innerHTML = `<img src="${project.url}" alt="${project.title}">`;
   }
 
-  // Gérer le lien "À venir"
   if (project.link === "#") {
     detailLink.style.display = 'none';
   } else {
     detailLink.style.display = 'inline-flex';
   }
 
-  // Vider et remplir les tags
   detailTags.innerHTML = '';
   project.tags.forEach(tag => {
     const tagElement = document.createElement('span');
@@ -364,41 +361,43 @@ function showProjectDetail(projectId) {
     detailTags.appendChild(tagElement);
   });
 
-  // Remplacer les icônes feather
   feather.replace(); 
-
-  // --- C'est la partie importante ---
-  // On utilise votre fonction existante pour changer de page !
   switchPage('projet-detail');
-  
-  // On met à jour l'URL (bonus)
   history.pushState(null, null, `#projet-${projectId}`);
-  
-  // S'assurer que la page s'affiche en haut
   detailPage.scrollTo(0, 0);
 }
 
-// 4. Ajout des écouteurs d'événements
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('click', (e) => {
-    e.preventDefault(); // Empêche tout comportement par défaut
+    e.preventDefault();
     const projectId = card.dataset.projectId;
     showProjectDetail(projectId);
   });
 });
 
-// 5. Écouteur pour le bouton "Retour"
 backToProjectsBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  
-  // On utilise votre fonction existante pour revenir
   switchPage('projets');
   history.pushState(null, null, '#projets');
-  
-  // On "cache" la page détail pour la prochaine transition
   if (detailPage.classList.contains('active')) {
       detailPage.classList.add('exit');
       detailPage.classList.remove('active');
   }
 });
+
+// --- FIX BUG PC : RECALCULER LA BARRE DE NAV AU CHARGEMENT ---
+// Cela force le slider à se placer correctement même si la police charge après
+window.addEventListener("load", () => {
+    const activeLink = document.querySelector(".main-nav .nav-link.active");
+    if(activeLink) {
+        moveSlider(activeLink);
+    }
+});
+window.addEventListener("resize", () => {
+    const activeLink = document.querySelector(".main-nav .nav-link.active");
+    if(activeLink) {
+        moveSlider(activeLink);
+    }
+});
+
 });
