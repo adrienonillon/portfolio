@@ -11,6 +11,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- CURSOR ANIMATION ---
   document.addEventListener("mousemove", (e) => {
+
+    // --- GESTION DU MENU MOBILE ---
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const mainNav = document.querySelector(".main-nav");
+  const mobileLinks = document.querySelectorAll(".main-nav .nav-link");
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", () => {
+      // Toggle la classe pour faire glisser le menu
+      mainNav.classList.toggle("open");
+      
+      // Gestion de l'icône et du scroll
+      if (mainNav.classList.contains("open")) {
+        mobileMenuBtn.innerHTML = '<i data-feather="x"></i>';
+        mobileMenuBtn.style.color = "var(--primary-color)"; // Mettre la croix en couleur
+        document.body.style.overflow = "hidden"; // Bloque le scroll
+      } else {
+        mobileMenuBtn.innerHTML = '<i data-feather="menu"></i>';
+        mobileMenuBtn.style.color = ""; 
+        document.body.style.overflow = ""; // Réactive le scroll
+      }
+      feather.replace(); // Recharge les icônes
+    });
+  }
+
+  // Fermer le menu au clic sur un lien
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        mainNav.classList.remove("open");
+        mobileMenuBtn.innerHTML = '<i data-feather="menu"></i>';
+        mobileMenuBtn.style.color = "";
+        document.body.style.overflow = "";
+        feather.replace();
+      }
+    });
+  });
+
     cursor.style.top = e.clientY + "px";
     cursor.style.left = e.clientX + "px";
   });
