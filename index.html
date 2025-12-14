@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adrien Onillon - Portfolio </title>
+    <title>Adrien Onillon - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -40,20 +40,17 @@
     </header>
 
     <main id="main-content">
+      
       <section id="accueil" class="page-section active">
         <div class="hero">
           <div class="container hero-content">
             <h1 class="hero-title">
-              Adrien
-              <span class="highlight-text">Onillon</span>
+              Adrien <span class="highlight-text">Onillon</span>
             </h1>
-            <h1 class="hero-subtitle" aria-live="polite">
-              <span id="typed-text" aria-hidden="true"></span
-              ><span class="typed-cursor" aria-hidden="true">|</span>
-              <span class="visually-hidden"
-                >Monteur Vidéo, 3D Artist, Motion Designer, Graphiste, Web designer </span
-              >
-            </h1>
+            <h2 class="hero-subtitle">
+              <span id="typed-text"></span><span class="typed-cursor">|</span>
+              <span class="visually-hidden">Monteur Vidéo, 3D Artist, Motion Designer, Graphiste, Web designer</span>
+            </h2>
             <a href="#projets" class="cta-button page-transition-link">
               Voir mes réalisations <i data-feather="arrow-right"></i>
             </a>
@@ -61,46 +58,29 @@
         </div>
       </section>
 
-      <!-- Section À Propos -->
       <section id="a-propos" class="page-section">
         <div class="page-content">
           <div class="container about-container-wrapper">
             <div class="about-card">
               <div class="about-image">
-                <img
-                  src="./assets/photo-présentation.png"
-                  alt="Portrait de Adrien Onillon"
-                />
+                <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon" />
               </div>
               <div class="about-text">
                 <h2 class="section-title">À propos</h2>
                 <p>
-                  Actuellement en deuxième année de BUT MMI (Métiers du Multimédia et de l'Internet) à Limoges, je me consacre au développement de mes compétences en montage vidéo, 3D, design graphique et web design.
+                  Actuellement en deuxième année de BUT MMI à Limoges, je me consacre au développement de mes compétences en montage vidéo, 3D, design graphique et web design.
                 </p>
-
                 <p>
-                  Mon objectif est de rejoindre une équipe dynamique pour participer à des projets innovants, mettre en pratique mes acquis et continuer à développer mes compétences technique et ma vision créative.
+                  Mon objectif est de rejoindre une équipe dynamique pour participer à des projets innovants, mettre en pratique mes acquis et continuer à développer mes compétences techniques et ma vision créative.
                 </p>
                 <p class="skills-title">Outils maîtrisés</p>
                 <div class="skills-grid">
-                  <div class="skill-item">
-                    <i data-feather="video"></i><span>Davinci Resolve</span>
-                  </div>
-                  <div class="skill-item">
-                    <i data-feather="box"></i><span>Blender</span>
-                  </div>
-                  <div class="skill-item">
-                    <i data-feather="figma"></i><span>Figma</span>
-                  </div>
-                  <div class="skill-item">
-                    <i data-feather="pen-tool"></i><span>Suite Adobe</span>
-                  </div>
-                  <div class="skill-item">
-                    <i data-feather="code"></i><span>VS Code</span>
-                  </div>
-                  <div class="skill-item">
-                    <i data-feather="cpu"></i><span>AI</span>
-                  </div>
+                  <div class="skill-item"><i data-feather="video"></i><span>Davinci Resolve</span></div>
+                  <div class="skill-item"><i data-feather="box"></i><span>Blender</span></div>
+                  <div class="skill-item"><i data-feather="figma"></i><span>Figma</span></div>
+                  <div class="skill-item"><i data-feather="pen-tool"></i><span>Suite Adobe</span></div>
+                  <div class="skill-item"><i data-feather="code"></i><span>VS Code</span></div>
+                  <div class="skill-item"><i data-feather="cpu"></i><span>AI</span></div>
                 </div>
               </div>
             </div>
@@ -108,125 +88,111 @@
         </div>
       </section>
 
-      <!-- Section Projets -->
       <section id="projets" class="page-section">
         <div class="page-content projects-section">
           <div class="container">
             <h2 class="section-title text-center">Mes Projets</h2>
             <div class="projects-grid">
+              
+              <div class="project-card" data-project-id="proj-motion">
+                <span class="project-badge personnel">Personnel</span>
+                <div class="project-image">
+                   <img src="./assets/motion-cover.png" alt="Projet Motion Design" onerror="this.src='https://placehold.co/600x400/1e1e1e/FFF?text=Motion+Design'" />
+                </div>
+                <div class="project-info">
+                  <h3 class="project-title">Motion Design Showreel</h3>
+                  <p class="project-description">Animation graphique et effets visuels pour une présentation dynamique.</p>
+                  <div class="project-tags"><span>After Effects</span><span>Motion</span></div>
+                </div>
+              </div>
+
+              <div class="project-card" data-project-id="proj-affiche">
+                <span class="project-badge personnel">Personnel</span>
+                <div class="project-image">
+                   <img src="./assets/affiche-cover.png" alt="Création d'affiche" onerror="this.src='https://placehold.co/600x400/1e1e1e/FFF?text=Affiche'" />
+                </div>
+                <div class="project-info">
+                  <h3 class="project-title">Affiche Créative</h3>
+                  <p class="project-description">Conception graphique et mise en page pour un événement culturel.</p>
+                  <div class="project-tags"><span>Illustrator</span><span>Print</span></div>
+                </div>
+              </div>
 
               <div class="project-card" data-project-id="proj-1">
                 <span class="project-badge universitaire">Universitaire</span>
                 <div class="project-image">
-                  <img
-                    src="./assets/Behance.png"
-                    alt="Prototype page behance"
-                  />
+                  <img src="./assets/Behance.png" alt="Prototype page behance" />
                 </div>
                 <div class="project-info">
                   <h3 class="project-title">Prototype page behance</h3>
-                  <p class="project-description">
-                    Réalisation d'un prototype de page behance pour présenter un projet de design UI.                    
-                  </p>
-                  <div class="project-tags">
-                    <span>Figma</span><span>UI Design</span>
-                  </div>
+                  <p class="project-description">Réalisation d'un prototype de page behance pour présenter un projet de design UI.</p>
+                  <div class="project-tags"><span>Figma</span><span>UI Design</span></div>
                 </div>
               </div>           
 
               <div class="project-card" data-project-id="proj-5">
                 <span class="project-badge universitaire">Universitaire</span>
                 <div class="project-image">
-                  <img
-                    src="./assets/loc'sur.png"
-                    alt="Start up fictive - Loc'sur"
-                  />
+                  <img src="./assets/loc'sur.png" alt="Start up fictive - Loc'sur" />
                 </div>
                 <div class="project-info">
                   <h3 class="project-title">Start up fictive - Loc'sur</h3>
-                  <p class="project-description">
-                    Réalisations d'un site Onepage, responsive et accessible avec un developpement dynamisque en JS.
-                  </p>
-                  <div class="project-tags">
-                    <span>Web</span><span>HTML/CSS</span>
-                  </div>
+                  <p class="project-description">Site Onepage, responsive et accessible avec développement dynamique JS.</p>
+                  <div class="project-tags"><span>Web</span><span>HTML/CSS</span></div>
                 </div>
               </div>
 
               <div class="project-card" data-project-id="proj-6">
                 <span class="project-badge universitaire">Universitaire</span>
                 <div class="project-image">
-                  <img
-                    src="https://img.youtube.com/vi/fVRYDqP8nDo/hqdefault.jpg"
-                    alt="Applications de sport pour Héméra"
-                  />
+                  <img src="https://img.youtube.com/vi/fVRYDqP8nDo/hqdefault.jpg" alt="Applications de sport" />
                 </div>
                 <div class="project-info">
                   <h3 class="project-title">Applications de sport pour Héméra</h3>
-                  <p class="project-description">
-                    Réalisations d'un prototypage sur figma d'applications mobiles et d'une pub pour encourager la pratique sportive chez les coworkers d'Héméra.
-                  </p>
-                  <div class="project-tags">
-                    <span>Vidéo</span><span>Réalisation</span>
-                  </div>
+                  <p class="project-description">Prototypage Figma et réalisation vidéo publicitaire.</p>
+                  <div class="project-tags"><span>Vidéo</span><span>Réalisation</span></div>
                 </div>
               </div>
 
               <div class="project-card" data-project-id="proj-7">
                 <span class="project-badge universitaire">Universitaire</span>
                 <div class="project-image">
-                  <img
-                    src="./assets/site-streaming.png"
-                    alt="Site de Streaming"
-                  />
+                  <img src="./assets/site-streaming.png" alt="Site de Streaming" />
                 </div>
                 <div class="project-info">
                   <h3 class="project-title">Site de Streaming</h3>
-                  <p class="project-description">
-                    Développement d'un site avec différentes fonctionnalités.
-                  </p>
-                  <div class="project-tags">
-                    <span>Web</span><span>PHP</span><span>JS</span>
-                  </div>
+                  <p class="project-description">Développement complet back-end et front-end.</p>
+                  <div class="project-tags"><span>Web</span><span>PHP</span><span>JS</span></div>
                 </div>
               </div>
+
               <div class="project-card" data-project-id="proj-8">
                 <span class="project-badge universitaire">Universitaire</span>
                 <div class="project-image">
-                  <img
-                    src="./assets/olive-oil.png"
-                    alt="Olive Oil"
-                  />
+                  <img src="./assets/olive-oil.png" alt="Olive Oil" />
                 </div>
                 <div class="project-info">
                   <h3 class="project-title">Olive Oil</h3>
-                  <p class="project-description">
-                    Réalisations d'un prototype pour un site de vente d'huile d'olive.
-                  </p>
-                  <div class="project-tags">
-                    <span>Figma</span><span>UI design</span><span>UX Research</span>
-                  </div>
+                  <p class="project-description">Prototype pour un site de vente d'huile d'olive.</p>
+                  <div class="project-tags"><span>Figma</span><span>UI/UX</span></div>
                 </div>
               </div>
+
             </div> 
+          </div>
+        </div>
       </section>
 
       <section id="contact" class="page-section">
         <div class="page-content contact-page">
           <div class="container">
             <div class="contact-header text-center">
-              <h2 class="section-title">Contactez-moi à tout moment</h2>
-              <p class="contact-subtitle">
-                Vous avez une question ou souhaitez simplement discuter ?
-                N'hésitez pas.
-              </p>
+              <h2 class="section-title">Contactez-moi</h2>
+              <p class="contact-subtitle">Vous avez une question ou souhaitez simplement discuter ? N'hésitez pas.</p>
             </div>
             <div class="contact-grid">
-
               <div class="contact-option-card">
-                <div class="contact-icon">
-                  <i data-feather="message-square"></i>
-                </div>
+                <div class="contact-icon"><i data-feather="message-square"></i></div>
                 <h3>Réseaux Sociaux</h3>
                 <div class="contact-socials">
                   <a href="https://www.linkedin.com/in/adrien-onillon-7bb121332/" data-magnetic><i data-feather="linkedin"></i></a>
@@ -238,9 +204,7 @@
                 <h3>Email</h3>
                 <div class="email-box">
                   <span id="email-text">adrienonillon12@gmail.com</span>
-                  <button id="copy-email-btn" title="Copier l'adresse email">
-                    <i data-feather="copy"></i>
-                  </button>
+                  <button id="copy-email-btn" title="Copier l'adresse email"><i data-feather="copy"></i></button>
                 </div>
               </div>
               <div class="contact-option-card">
@@ -248,9 +212,7 @@
                 <h3>Téléphone</h3>
                 <div class="phone-box">
                   <span id="phone-text">06 71 17 26 93</span>
-                  <button id="copy-phone-btn" title="Copier le numéro">
-                    <i data-feather="copy"></i>
-                  </button>
+                  <button id="copy-phone-btn" title="Copier le numéro"><i data-feather="copy"></i></button>
                 </div>
               </div>
             </div>
@@ -267,27 +229,20 @@
               </a>
               <h2 id="detail-title">Titre du Projet</h2>
             </div>
-
-            <div class="detail-media-container" id="detail-media">
-              </div>
-
+            <div class="detail-media-container" id="detail-media"></div>
             <div class="detail-info-grid">
               <div class="detail-description-card">
                 <h3>Description</h3>
-                <p id="detail-description">Description du projet...</p>
+                <p id="detail-description"></p>
               </div>
-
               <div class="detail-meta-card">
                 <h3>Compétences</h3>
-                <div id="detail-tags" class="detail-tags-list">
-                  </div>
-                
+                <div id="detail-tags" class="detail-tags-list"></div>
                 <a href="#" id="detail-link" class="cta-button" target="_blank" rel="noopener noreferrer">
                   Voir le projet <i data-feather="arrow-right"></i>
                 </a>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -305,8 +260,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-      feather.replace();
-    </script>
+    <script>feather.replace();</script>
   </body>
 </html>
