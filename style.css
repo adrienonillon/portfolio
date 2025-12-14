@@ -160,12 +160,12 @@ main {
   opacity: 0; transform: translateY(-30px); z-index: 9;
 }
 
-/* --- CORRECTION CENTRAGE VERTICAL --- */
+/* --- CORRECTION CENTRAGE VERTICAL (Desktop) --- */
 #accueil, #contact, #a-propos { 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: center; /* Ajouté pour centrer verticalement */
+    justify-content: center; /* Centrage vertical actif sur Desktop */
 }
 
 #projets, #projet-detail { display: block; }
@@ -243,11 +243,11 @@ main {
 .cta-button {
   background: linear-gradient(135deg, #5312C4 0%, #A58DCE 100%);
   color: var(--text-color);
-  padding: 0.9rem 2.2rem; /* Réduit (avant 1.2rem 3rem) */
+  padding: 0.9rem 2.2rem; /* Réduit */
   border-radius: 50px; 
   text-decoration: none; 
   font-weight: 700;
-  font-size: 1rem; /* Réduit (avant 1.1rem) */
+  font-size: 1rem; /* Réduit */
   display: inline-flex; 
   align-items: center; 
   gap: 0.6rem; 
@@ -421,7 +421,7 @@ main {
   .nav-link:hover { color: var(--text-color); }
 
   .cta-button:hover { 
-    transform: translateY(-4px) scale(1.05); /* Effet un peu plus subtil pour petit bouton */
+    transform: translateY(-4px) scale(1.05);
     box-shadow: 0 20px 45px rgba(83, 18, 196, 0.7), 0 0 40px rgba(165, 141, 206, 0.6);
     border-color: rgba(255, 255, 255, 0.8);
     letter-spacing: 1px;
@@ -535,7 +535,7 @@ main {
   
   .nav-link { 
     font-size: 2rem; margin: 1rem 0; opacity: 0; 
-    transform: translateX(40px); /* slide horizontal par défaut */
+    transform: translateX(40px);
     transition: opacity 0.35s ease, transform 0.35s ease;
   }
   .main-nav.open .nav-link { opacity: 1; transform: translateX(0); }
@@ -554,6 +554,11 @@ main {
     padding-top: 100px; 
     padding-bottom: 60px; 
   }
+
+  /* --- CORRECTION ESSENTIELLE : HAUT CACHÉ SUR MOBILE --- */
+  #a-propos, #contact {
+    justify-content: flex-start; /* Annule le centrage vertical qui cache le haut */
+  }
   
   .hero-content { margin-top: 1rem; padding: 0; }
 
@@ -566,7 +571,7 @@ main {
   /* A Propos */
   .about-card {
     flex-direction: column; text-align: center; 
-    padding: 2rem 1rem; /* Réduit le padding latéral */
+    padding: 2rem 1rem;
     gap: 2rem;
     margin-top: 2rem;
   }
@@ -578,9 +583,9 @@ main {
   
   .cta-button { width: 100%; justify-content: center; }
 
-  /* --- CORRECTION CONTACT MOBILE --- */
+  /* Contact */
   .contact-option-card {
-    padding: 1.5rem 1rem; /* Moins de padding interne pour laisser place au contenu */
+    padding: 1.5rem 1rem;
     width: 100%;
     margin: 0;
   }
@@ -601,7 +606,8 @@ main {
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 2rem; }
+  .hero-title { font-size: 3rem; }
+  .hero-subtitle { font-size: 2rem; }
   .section-title { font-size: 1.8rem; }
   
   .container { padding: 0 1rem; }
