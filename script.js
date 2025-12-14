@@ -281,82 +281,104 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
 
+/* --- DATA PROJETS (AVEC PLUSIEURS LIENS) --- */
 const projectDetails = {
-  "proj-1": {
-    title: "Prototype page behance",
+  "proj-motion": {
+    title: "Motion Design Showreel",
     type: "image",
-    url: "./assets/Behance.png",
-    tags: ["Figma", "UI Design", "UX Research"],
-    description: "Réalisation d'une maquette haute fidélité pour une page de présentation de projet sur Behance.",
-    link: "https://www.figma.com/proto/YoBh7IDv461G4lTq2hMRQO/SAE-101?node-id=2209-374&t=wdg5WnOhF2okBX6L-0"
+    url: "./assets/affiche-motion.jpg", 
+    tags: ["After Effects", "Motion Design", "Autonomie", "Créativité"],
+    duration: "Environ 10 heures",
+    description: "Animation d'une affiche statique en utilisant After Effects. C'était mon premier projet sur ce logiciel, l'objectif était de donner vie aux éléments graphiques avec une liberté créative totale. Réalisé en parallèle des cours en 2ème année.",
+    links: [
+        { label: "Voir la vidéo", url: "https://youtu.be/7pt2nna7VFY" }
+    ]
+  },
+  "proj-dating": {
+    title: "Application de rencontre UI/UX",
+    type: "image", 
+    url: "./assets/Mycrew.png", 
+    tags: ["Figma", "UI Design", "UX Research", "Mobile First"],
+    duration: "2 mois (en parallèle)",
+    description: "Conception UI/UX complète d'une application de rencontre centrée sur le sport. Projet réalisé en 2ème année à partir d'une charte graphique et de logos imposés.",
+    links: [
+        { label: "Voir le prototype", url: "https://www.figma.com/proto/TPt8gRGQDhQzeZH6KdU9Cd/Adrien-Onillon---mycrew--Copy-?page-id=4005%3A5&node-id=4124-791&viewport=242%2C138%2C0.4&t=Yfl2GQe0PM9AqGMa-1&scaling=scale-down&content-scaling=fixed" }
+    ]
   },
   "proj-5": {
     title: "Start up fictive - Loc'sur",
     type: "web",
     url: "./assets/loc'sur.png", 
-    tags: ["JS", "HTML", "CSS"],
-    description: "Développement du site web vitrine pour 'Loc'sur', une start-up fictive de location de matériel.",
-    link: "https://www.a-onillon.mmi-limoges.fr/"
+    tags: ["HTML5", "CSS3", "JavaScript", "Intégration Web"],
+    duration: "2 semaines",
+    description: "Développement complet du site vitrine de 'Loc'sur', une start-up fictive. Premier projet d'envergure intégrant HTML, CSS et JavaScript.",
+    links: [
+        { label: "Visiter le site", url: "https://www.a-onillon.mmi-limoges.fr/" }
+    ]
   },
   "proj-6": {
     title: "Applications de sport pour Héméra",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/fVRYDqP8nDo?si=yQYyVubQmp1jb4ck",
-    tags: ["Vidéo", "Réalisation", "Cadrage", "DaVinci Resolve", "Figma"],
-    description: "Projet complet comprenant la conception UX/UI d'une application mobile de sport et une vidéo promotionnelle.",
-    link: "https://www.youtube.com/watch?v=fVRYDqP8nDo"
+    type: "image",
+    url: "./assets/SAE2.02.png",
+    tags: ["Davinci Resolve", "Figma", "Tournage", "Travail d'équipe"],
+    duration: "2 semaines",
+    description: "Projet de groupe visant à inciter les coworkers d'Héméra à faire du sport. Réalisation d'un prototype d'application et d'une publicité vidéo.",
+    links: [
+        { label: "Voir la vidéo", url: "https://www.youtube.com/watch?v=fVRYDqP8nDo" },
+        { label: "Voir le prototype Figma", url: "https://www.figma.com/proto/OyGiLCARjgZ28nqUMcIkJg/SAE202?page-id=96%3A3090&node-id=96-3157&viewport=-117%2C109%2C0.33&t=LALeDM5hbhSWASuB-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=96%3A3091" }
+    ]
+  },
+  "proj-affiche": {
+    title: "Affiche Créative - Fabio Quartararo",
+    type: "image",
+    url: "./assets/affiche-fabio.png",
+    tags: ["Photoshop", "Illustrator", "Détourage", "Composition"],
+    duration: "1 jour",
+    description: "Création graphique mettant à l'honneur l'athlète Fabio Quartararo. La composition joue sur la dualité entre l'action (course) et la victoire.",
+    links: []
+  },
+  "proj-podcast": {
+    title: "Vignette Podcast Universitaire",
+    type: "image",
+    url: "./assets/vignette-podcast.png", 
+    tags: ["Photoshop", "Identité Visuelle", "Storytelling", "Graphisme"],
+    duration: "1 jour",
+    description: "Conception de l'identité visuelle d'un podcast sur le thème de l'enquête et de la vérité.",
+    links: []
   },
   "proj-7": {
     title: "Site de Streaming",
     type: "web",
     url: "./assets/site-streaming.png",
-    tags: ["HTML", "CSS", "PHP", "JavaScript", "Back-end"],
-    description: "Création d'une plateforme de streaming vidéo fonctionnelle avec gestion de base de données.",
-    link: "https://onillon-sae203.mmi-limoges.fr/"
+    tags: ["PHP", "MySQL", "HTML/CSS", "Base de données"],
+    duration: "2 semaines",
+    description: "Développement Back-End et Front-End d'une plateforme de streaming vidéo (1ère année). Gestion de base de données MySQL et PHP.",
+    links: [
+        { label: "Visiter le site", url: "https://onillon-sae203.mmi-limoges.fr/" }
+    ]
+  },
+  "proj-1": {
+    title: "Prototype page Behance",
+    type: "image",
+    url: "./assets/Behance.png",
+    tags: ["Figma", "Web Design", "Pixel Perfect", "Analyse"],
+    duration: "1 semaine",
+    description: "Reproduction fidèle d'une page projet Behance (Pixel Perfect). Exercice pédagogique de 1ère année pour maîtriser l'interface de Figma.",
+    links: [
+        { label: "Voir le prototype", url: "https://www.figma.com/proto/YoBh7IDv461G4lTq2hMRQO/SAE-101?node-id=2209-374&t=wdg5WnOhF2okBX6L-0" }
+    ]
   },
   "proj-8": {
-    title: "Olive Oil",
+    title: "Olive Oil - E-commerce",
     type: "image",
     url: "./assets/olive-oil.png",
-    tags: ["Figma", "UI Design", "UX Research"],
-    description: "Prototypage de l'interface utilisateur pour un site e-commerce haut de gamme.",
-    link: ""
-  },
-    "proj-motion": {
-    title: "Motion Design Showreel",
-    type: "image",
-    url: "./assets/ONILLONAdrien_motiondesign_lieuxtouristique.mov",
-    tags: ["After Effects", "Motion"],
-    description: "Animation graphique et effets visuels pour une présentation dynamique.",
-    link: "#"
-  },
-    "proj-affiche": {
-    title: "Affiche Créative",
-    type: "image",
-    url: "./assets/affiche-fabio.png",
-    tags: ["Illustrator", "Print"],
-    description: "Conception graphique et mise en page pour un événement culturel.",
-    link: "#"
-  },
-  
-  // NOUVEAU PROJET : APP DE RENCONTRE
-  "proj-dating": {
-    title: "Application de rencontre UI/UX",
-    type: "figma", // Utilisation de l'embed Figma si tu as le lien, sinon "image"
-    url: "https://www.figma.com/proto/TON_LIEN_FIGMA_ICI", // REMPLACE CECI
-    tags: ["Figma", "UI Design", "UX Research", "Mobile"],
-    description: "Conception complète d'une application de rencontre mobile. Recherche utilisateur, wireframes et design system.",
-    link: "#"
-  },
-
-  // NOUVEAU PROJET : PODCAST
-  "proj-podcast": {
-    title: "Vignette Podcast Universitaire",
-    type: "image",
-    url: "./assets/podcast-cover.png", // Assure-toi d'avoir l'image HD
-    tags: ["Photoshop", "Illustrator", "Graphisme"],
-    description: "Création de l'identité visuelle et de la vignette pour un podcast universitaire.",
-    link: "#"
+    tags: ["Figma", "Auto-Layout", "E-commerce", "UI Design"],
+    duration: "3 semaines",
+    description: "Conception d'une maquette pour un site e-commerce d'huile d'olive haut de gamme. Projet axé sur l'apprentissage approfondi de l'Auto-Layout sur Figma.",
+    links: [
+        { label: "Version Mobile", url: "https://www.figma.com/proto/uiHQmV8bEWey9ryPOhwOgB/Adrien-Onillon---Olea--Copy-?page-id=2002%3A5&node-id=2291-144&viewport=1279%2C206%2C0.05&t=2OUxQWu9gaFnDHV3-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2291%3A144" },
+        { label: "Version Desktop", url: "https://www.figma.com/proto/uiHQmV8bEWey9ryPOhwOgB/Adrien-Onillon---Olea--Copy-?page-id=2563%3A81&node-id=2563-82&viewport=776%2C22%2C0.25&t=flpkExwG5cGBjZZo-1&scaling=scale-down&content-scaling=fixed" }
+    ]
   }
 };
 
@@ -365,7 +387,8 @@ const detailTitle = document.getElementById('detail-title');
 const detailMedia = document.getElementById('detail-media');
 const detailTags = document.getElementById('detail-tags');
 const detailDescription = document.getElementById('detail-description');
-const detailLink = document.getElementById('detail-link');
+const detailLinksWrapper = document.getElementById('detail-links-wrapper'); // Nouveau conteneur
+const detailDuration = document.getElementById('detail-duration'); 
 const backToProjectsBtn = document.getElementById('back-to-projets-btn');
 
 function showProjectDetail(projectId) {
@@ -374,27 +397,37 @@ function showProjectDetail(projectId) {
 
   detailTitle.textContent = project.title;
   detailDescription.textContent = project.description;
-  detailLink.href = project.link;
+  detailDuration.textContent = project.duration; 
 
+  // --- GESTION DES MEDIA (VIDEO/IMAGE/FIGMA) ---
   detailMedia.innerHTML = '';
   if (project.type === 'youtube') {
     detailMedia.innerHTML = `<iframe src="${project.url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   } else if (project.type === 'figma') {
-    // Note: Pour que ça marche, l'URL doit être le lien "Share > Embed" de Figma ou un lien de prototype
-    const figmaEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.url)}`;
-    detailMedia.innerHTML = `<iframe src="${figmaEmbedUrl}" allowfullscreen></iframe>`;
+    // Si c'est un embed Figma
+    detailMedia.innerHTML = `<iframe src="${project.url}" allowfullscreen></iframe>`;
   } else if (project.url.endsWith('.mov') || project.url.endsWith('.mp4')) {
     detailMedia.innerHTML = `<video controls src="${project.url}" style="width:100%; border-radius:12px;"></video>`;
   } else {
+    // Cas par défaut : Image
     detailMedia.innerHTML = `<img src="${project.url}" alt="${project.title}">`;
   }
 
-  if (project.link === "#" || !project.link) {
-    detailLink.style.display = 'none';
-  } else {
-    detailLink.style.display = 'inline-flex';
+  // --- GESTION DES LIENS MULTIPLES ---
+  detailLinksWrapper.innerHTML = ''; // On vide les anciens boutons
+  if (project.links && project.links.length > 0) {
+      project.links.forEach(linkObj => {
+          const btn = document.createElement('a');
+          btn.href = linkObj.url;
+          btn.className = 'cta-button';
+          btn.target = "_blank";
+          btn.rel = "noopener noreferrer";
+          btn.innerHTML = `${linkObj.label} <i data-feather="arrow-right"></i>`;
+          detailLinksWrapper.appendChild(btn);
+      });
   }
 
+  // Tags
   detailTags.innerHTML = '';
   project.tags.forEach(tag => {
     const tagElement = document.createElement('span');
@@ -426,13 +459,11 @@ backToProjectsBtn.addEventListener('click', (e) => {
   }
 });
 
-// --- FIX BUG PC : RECALCULER LA BARRE DE NAV AU CHARGEMENT ---
 window.addEventListener("load", () => {
     const activeLink = document.querySelector(".main-nav .nav-link.active");
     if(activeLink) {
         moveSlider(activeLink);
     }
-    // Deep linking check
     const hash = window.location.hash.substring(1);
     if(hash && hash.startsWith('projet-')) {
          const projectId = hash.replace('projet-', '');
