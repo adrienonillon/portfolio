@@ -139,11 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- NAVIGATION LOGIC ---
+// --- NAVIGATION LOGIC ---
   function moveSlider(targetLink) {
     if (!targetLink) return;
     const nav = targetLink.parentElement;
-    // On s'assure que le nav est visible pour faire les calculs
     if(nav.offsetParent === null) return;
     
     const targetRect = targetLink.getBoundingClientRect();
@@ -154,31 +153,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fonction pour gérer le scroll intelligent
   function switchPage(targetId) {
+    // SUPPRESSION DU BLOCAGE (isSwitching) ICI
+    
     const targetSection = document.getElementById(targetId);
     const activeSection = document.querySelector(".page-section.active");
 
-    if (targetSection === activeSection) return;
-
-    // Animation de sortie
-    if (activeSection) {
-      activeSection.classList.add("exit");
-      activeSection.classList.remove("active");
+    // Si on clique sur la page déjà active, on remonte juste en haut
+    if (targetSection === activeSection) {
+        targetSection.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
     }
 
     // Animation d'entrée
     targetSection.classList.add("active");
-    
+
+    // Animation de sortie pour l'ancienne section
+    if (activeSection) {
+      activeSection.classList.add("exit");
+      activeSection.classList.remove("active");
+      
+      // Nettoyage de la classe exit après l'animation CSS (0.5s)
+      setTimeout(() => {
+        activeSection.classList.remove("exit");
+      }, 500);
+    }
+
     // SCROLL INTELLIGENT :
-    // Remonter en haut sauf pour "projets"
+    // Force le scroll en haut immédiatement
     if (targetId === 'a-propos' || targetId === 'contact' || targetId === 'accueil') {
         targetSection.scrollTo(0, 0);
     }
-    
-    setTimeout(() => {
-      if (activeSection) {
-        activeSection.classList.remove("exit");
-      }
-    }, 500);
   }
 
   const initialActiveLink = document.querySelector(
@@ -321,7 +325,7 @@ const projectDetails = {
     description: "",
     link: ""
   },
-    "proj-motion": {
+    "proj-9": {
     title: "Motion Design Showreel",
     type: "image",
     url: "./assets/ONILLONAdrien_motiondesign_lieuxtouristique.mov",
@@ -329,7 +333,7 @@ const projectDetails = {
     description: "Animation graphique et effets visuels pour une présentation dynamique.",
     link: "#"
   },
-    "proj-affiche": {
+    "proj-10": {
     title: "Affiche Créative",
     type: "image",
     url: "./assets/affiche-fabio.png",
@@ -420,7 +424,9 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
     const activeLink = document.querySelector(".main-nav .nav-link.active");
     if(activeLink) {
-        moveSlider(activeLink);
+        // Debounce léger pour éviter recalculs multiples
+        clearTimeout(window.__sliderDebounce);
+        window.__sliderDebounce = setTimeout(() => moveSlider(activeLink), 100);
     }
 });
 

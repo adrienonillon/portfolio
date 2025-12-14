@@ -286,6 +286,9 @@ main {
   display: flex; align-items: center; gap: 3rem; max-width: 1000px; margin: 0 auto;
   flex-wrap: wrap; 
   justify-content: center;
+
+  opacity: 0;
+  transform: translateY(20px);
 }
 .about-image img { 
   width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary-color); 
@@ -308,6 +311,10 @@ main {
   font-weight: 900; 
   margin-bottom: 2rem; 
   color: var(--text-color);
+  
+
+  opacity: 0;
+  transform: translateY(20px);
 }
 .text-center { text-align: center; }
 
@@ -353,6 +360,8 @@ main {
 /* --- CONTACT --- */
 .contact-header {
   margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .contact-subtitle {
@@ -369,6 +378,8 @@ main {
 .contact-option-card {
   background: rgba(17, 24, 39, 0.5); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px; padding: 2rem; text-align: center; transition: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .contact-icon { 
