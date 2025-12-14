@@ -239,15 +239,15 @@ main {
 .typed-cursor { animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* --- BOUTON MODIFIÉ (PLUS PETIT) --- */
+/* --- BOUTON CTA --- */
 .cta-button {
   background: linear-gradient(135deg, #5312C4 0%, #A58DCE 100%);
   color: var(--text-color);
-  padding: 0.9rem 2.2rem; /* Réduit */
+  padding: 0.9rem 2.2rem; 
   border-radius: 50px; 
   text-decoration: none; 
   font-weight: 700;
-  font-size: 1rem; /* Réduit */
+  font-size: 1rem; 
   display: inline-flex; 
   align-items: center; 
   gap: 0.6rem; 
@@ -286,8 +286,7 @@ main {
   display: flex; align-items: center; gap: 3rem; max-width: 1000px; margin: 0 auto;
   flex-wrap: wrap; 
   justify-content: center;
-
-  opacity: 0;
+  opacity: 0; /* Fix Flash */
   transform: translateY(20px);
 }
 .about-image img { 
@@ -304,24 +303,23 @@ main {
   transition: 0.3s; font-size: 0.9rem;
 }
 
-/* --- PROJETS --- */
+/* --- PROJETS - MISE EN PAGE MASONRY (Style Pinterest) --- */
 .section-title { 
   font-family: var(--font-family-title);
   font-size: clamp(2rem, 6vw, 3rem); 
   font-weight: 900; 
   margin-bottom: 2rem; 
   color: var(--text-color);
-  
-
-  opacity: 0;
+  opacity: 0; /* Fix Flash */
   transform: translateY(20px);
 }
 .text-center { text-align: center; }
 
+/* Remplacement du GRID par COLUMNS pour effet Masonry */
 .projects-grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-  gap: 2rem; 
+  display: block; 
+  column-count: 3; /* 3 colonnes sur PC */
+  column-gap: 2rem;
   padding-bottom: 4rem; 
 }
 
@@ -329,7 +327,12 @@ main {
   position: relative; background: rgba(17, 24, 39, 0.5); backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;
   transition: transform 0.3s, border-color 0.3s; cursor: pointer;
-  display: flex; flex-direction: column;
+  
+  /* Paramètres importants pour Masonry */
+  break-inside: avoid; /* Empêche de couper la carte en deux */
+  margin-bottom: 2rem; /* Espace vertical entre les cartes */
+  display: inline-block; /* Nécessaire pour le rendu colonne */
+  width: 100%;
 }
 
 .project-badge {
@@ -339,11 +342,25 @@ main {
 .project-badge.universitaire { background-color: var(--primary-color); }
 .project-badge.personnel { background-color: #7510b9; }
 
-.project-image { aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
-.project-image img { width: 100%; height: 100%; object-fit: cover; }
+/* --- CORRECTION IMAGES COUPÉES --- */
+/* On laisse l'image définir la hauteur */
+.project-image { 
+    width: 100%;
+    /* Pas de aspect-ratio forcé ici */
+    /* Pas de overflow hidden strict nécessaire si l'image est bien faite */
+    background: #000; 
+}
+
+/* On cible les img ET les vidéos */
+.project-image img, .project-image video { 
+    width: 100%; 
+    height: auto; /* L'image garde ses proportions et pousse la carte */
+    display: block; /* Supprime l'espace vide sous l'image */
+}
+
 .project-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
 .project-title { margin-bottom: 0.5rem; font-size: 1.25rem; }
-.project-description { color: var(--text-muted-color); font-size: 0.95rem; margin-bottom: 1rem; flex-grow: 1;}
+.project-description { color: var(--text-muted-color); font-size: 0.95rem; margin-bottom: 1rem; flex-grow: 1; white-space: normal;}
 .project-tags span { display: inline-block; background: var(--surface-color); color: var(--text-muted-color); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 12px; margin-right: 0.5rem; margin-bottom: 0.5rem; }
 
 /* --- DETAIL PROJET --- */
@@ -360,7 +377,7 @@ main {
 /* --- CONTACT --- */
 .contact-header {
   margin-bottom: 3rem;
-  opacity: 0;
+  opacity: 0; /* Fix Flash */
   transform: translateY(20px);
 }
 
@@ -378,7 +395,7 @@ main {
 .contact-option-card {
   background: rgba(17, 24, 39, 0.5); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px; padding: 2rem; text-align: center; transition: 0.3s;
-  opacity: 0;
+  opacity: 0; /* Fix Flash */
   transform: translateY(20px);
 }
 
@@ -393,7 +410,7 @@ main {
 
 .email-box, .phone-box {
   display: flex; 
-  flex-direction: row !important; /* Force la ligne */
+  flex-direction: row !important; 
   justify-content: space-between; 
   align-items: center; 
   background: var(--bg-color);
@@ -426,7 +443,6 @@ main {
 
 
 /* --- GESTION DES HOVERS (SOURIS UNIQUEMENT) --- */
-/* On applique ces styles SEULEMENT si l'appareil a une souris. */
 @media (hover: hover) {
   
   .nav-link:hover { color: var(--text-color); }
@@ -459,14 +475,12 @@ main {
   .back-to-projects-link:hover { color: var(--primary-color); }
 }
 
-/* Sur mobile, on veut quand même un petit effet quand on clique (active state) */
 .cta-button:active, .project-card:active {
   transform: scale(0.98);
 }
 
 
 /* --- MOBILE MENU ANIMATION STYLE --- */
-/* Styles pour la croix animée */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -476,7 +490,6 @@ main {
   padding: 10px;
 }
 
-/* Structure du burger */
 .hamburger-box {
   width: 30px;
   height: 24px;
@@ -528,6 +541,9 @@ main {
   
   .header .container { justify-content: space-between; }
   .logo { position: relative; left: 0; }
+  
+  /* Masonry Tablette: 2 colonnes */
+  .projects-grid { column-count: 2; }
 
   /* Menu Mobile Plein Écran */
   .main-nav {
@@ -573,8 +589,11 @@ main {
   
   .hero-content { margin-top: 1rem; padding: 0; }
 
-  /* Grilles en 1 colonne */
-  .projects-grid, .contact-grid, .detail-info-grid { 
+  /* Masonry Mobile: 1 colonne */
+  .projects-grid { column-count: 1; }
+  
+  /* Grilles en 1 colonne pour le reste */
+  .contact-grid, .detail-info-grid { 
     grid-template-columns: 1fr; 
     gap: 1.5rem;
   }
@@ -617,8 +636,7 @@ main {
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 3rem; }
-  .hero-subtitle { font-size: 2rem; }
+  .hero-title { font-size: 2rem; }
   .section-title { font-size: 1.8rem; }
   
   .container { padding: 0 1rem; }

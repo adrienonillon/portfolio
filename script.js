@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-// --- NAVIGATION LOGIC ---
+  // --- NAVIGATION LOGIC ---
   function moveSlider(targetLink) {
     if (!targetLink) return;
     const nav = targetLink.parentElement;
@@ -151,9 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
     navSlider.style.left = `${targetRect.left - navRect.left}px`;
   }
 
-  // Fonction pour gérer le scroll intelligent
+  // Fonction pour gérer le scroll intelligent (SANS BLOCAGE)
   function switchPage(targetId) {
-    // SUPPRESSION DU BLOCAGE (isSwitching) ICI
     
     const targetSection = document.getElementById(targetId);
     const activeSection = document.querySelector(".page-section.active");
@@ -179,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // SCROLL INTELLIGENT :
-    // Force le scroll en haut immédiatement
+    // Force le scroll en haut immédiatement pour les pages courtes
     if (targetId === 'a-propos' || targetId === 'contact' || targetId === 'accueil') {
         targetSection.scrollTo(0, 0);
     }
@@ -247,17 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const erasingSpeed = 40;
     const pauseBetween = 1400;
 
-    // Force l'animation sur mobile même si l'OS a "réduire les animations" activé
-    const prefersReducedMotion =
-      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
     let roleIndex = 0;
     let charIndex = 0;
 
     const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    if (prefersReducedMotion && !isTouchDevice) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       typedEl.textContent = roles[0];
       return;
     }
@@ -290,7 +287,7 @@ const projectDetails = {
     type: "image",
     url: "./assets/Behance.png",
     tags: ["Figma", "UI Design", "UX Research"],
-    description: "",
+    description: "Réalisation d'une maquette haute fidélité pour une page de présentation de projet sur Behance.",
     link: "https://www.figma.com/proto/YoBh7IDv461G4lTq2hMRQO/SAE-101?node-id=2209-374&t=wdg5WnOhF2okBX6L-0"
   },
   "proj-5": {
@@ -298,7 +295,7 @@ const projectDetails = {
     type: "web",
     url: "./assets/loc'sur.png", 
     tags: ["JS", "HTML", "CSS"],
-    description: "",
+    description: "Développement du site web vitrine pour 'Loc'sur', une start-up fictive de location de matériel.",
     link: "https://www.a-onillon.mmi-limoges.fr/"
   },
   "proj-6": {
@@ -306,7 +303,7 @@ const projectDetails = {
     type: "youtube",
     url: "https://www.youtube.com/embed/fVRYDqP8nDo?si=yQYyVubQmp1jb4ck",
     tags: ["Vidéo", "Réalisation", "Cadrage", "DaVinci Resolve", "Figma"],
-    description: "",
+    description: "Projet complet comprenant la conception UX/UI d'une application mobile de sport et une vidéo promotionnelle.",
     link: "https://www.youtube.com/watch?v=fVRYDqP8nDo"
   },
   "proj-7": {
@@ -314,7 +311,7 @@ const projectDetails = {
     type: "web",
     url: "./assets/site-streaming.png",
     tags: ["HTML", "CSS", "PHP", "JavaScript", "Back-end"],
-    description: "",
+    description: "Création d'une plateforme de streaming vidéo fonctionnelle avec gestion de base de données.",
     link: "https://onillon-sae203.mmi-limoges.fr/"
   },
   "proj-8": {
@@ -322,10 +319,10 @@ const projectDetails = {
     type: "image",
     url: "./assets/olive-oil.png",
     tags: ["Figma", "UI Design", "UX Research"],
-    description: "",
+    description: "Prototypage de l'interface utilisateur pour un site e-commerce haut de gamme.",
     link: ""
   },
-    "proj-9": {
+    "proj-motion": {
     title: "Motion Design Showreel",
     type: "image",
     url: "./assets/ONILLONAdrien_motiondesign_lieuxtouristique.mov",
@@ -333,7 +330,7 @@ const projectDetails = {
     description: "Animation graphique et effets visuels pour une présentation dynamique.",
     link: "#"
   },
-    "proj-10": {
+    "proj-affiche": {
     title: "Affiche Créative",
     type: "image",
     url: "./assets/affiche-fabio.png",
@@ -341,6 +338,26 @@ const projectDetails = {
     description: "Conception graphique et mise en page pour un événement culturel.",
     link: "#"
   },
+  
+  // NOUVEAU PROJET : APP DE RENCONTRE
+  "proj-dating": {
+    title: "Application de rencontre UI/UX",
+    type: "figma", // Utilisation de l'embed Figma si tu as le lien, sinon "image"
+    url: "https://www.figma.com/proto/TON_LIEN_FIGMA_ICI", // REMPLACE CECI
+    tags: ["Figma", "UI Design", "UX Research", "Mobile"],
+    description: "Conception complète d'une application de rencontre mobile. Recherche utilisateur, wireframes et design system.",
+    link: "#"
+  },
+
+  // NOUVEAU PROJET : PODCAST
+  "proj-podcast": {
+    title: "Vignette Podcast Universitaire",
+    type: "image",
+    url: "./assets/podcast-cover.png", // Assure-toi d'avoir l'image HD
+    tags: ["Photoshop", "Illustrator", "Graphisme"],
+    description: "Création de l'identité visuelle et de la vignette pour un podcast universitaire.",
+    link: "#"
+  }
 };
 
 const detailPage = document.getElementById('projet-detail');
@@ -363,6 +380,7 @@ function showProjectDetail(projectId) {
   if (project.type === 'youtube') {
     detailMedia.innerHTML = `<iframe src="${project.url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   } else if (project.type === 'figma') {
+    // Note: Pour que ça marche, l'URL doit être le lien "Share > Embed" de Figma ou un lien de prototype
     const figmaEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.url)}`;
     detailMedia.innerHTML = `<iframe src="${figmaEmbedUrl}" allowfullscreen></iframe>`;
   } else if (project.url.endsWith('.mov') || project.url.endsWith('.mp4')) {
@@ -424,9 +442,7 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
     const activeLink = document.querySelector(".main-nav .nav-link.active");
     if(activeLink) {
-        // Debounce léger pour éviter recalculs multiples
-        clearTimeout(window.__sliderDebounce);
-        window.__sliderDebounce = setTimeout(() => moveSlider(activeLink), 100);
+        moveSlider(activeLink);
     }
 });
 
