@@ -204,7 +204,7 @@ main {
   padding: 0.75rem 1.5rem; position: relative; z-index: 1; transition: color 0.4s;
   white-space: nowrap;
 }
-.nav-link.active, .nav-link:hover { color: var(--text-color); }
+.nav-link.active { color: var(--text-color); }
 
 .mobile-menu-btn {
   display: none; background: none; border: none; color: var(--text-color); cursor: pointer; z-index: 102;
@@ -232,27 +232,22 @@ main {
 .typed-cursor { animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* --- BOUTON MODIFIÉ (PLUS PETIT) --- */
 .cta-button {
   background: linear-gradient(135deg, #5312C4 0%, #A58DCE 100%);
   color: var(--text-color);
-  padding: 1.2rem 3rem; 
+  padding: 0.9rem 2.2rem; /* Réduit (avant 1.2rem 3rem) */
   border-radius: 50px; 
   text-decoration: none; 
-  font-weight: 800;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1rem; /* Réduit (avant 1.1rem) */
   display: inline-flex; 
   align-items: center; 
-  gap: 0.75rem; 
+  gap: 0.6rem; 
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 10px 30px rgba(83, 18, 196, 0.5), 0 0 25px rgba(165, 141, 206, 0.4);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, letter-spacing 0.3s;
   letter-spacing: 0.5px;
-}
-.cta-button:hover { 
-  transform: translateY(-6px) scale(1.08); 
-  box-shadow: 0 20px 45px rgba(83, 18, 196, 0.7), 0 0 40px rgba(165, 141, 206, 0.6);
-  border-color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 1px;
 }
 
 /* --- A PROPOS --- */
@@ -276,7 +271,6 @@ main {
   display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted-color);
   transition: 0.3s; font-size: 0.9rem;
 }
-.skill-item:hover { color: var(--primary-color); transform: translateY(-5px); }
 
 /* --- PROJETS --- */
 .section-title { 
@@ -301,7 +295,7 @@ main {
   transition: transform 0.3s, border-color 0.3s; cursor: pointer;
   display: flex; flex-direction: column;
 }
-.project-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+
 .project-badge {
   position: absolute; top: 0; left: 0; padding: 0.35rem 0.85rem; font-size: 0.8rem;
   font-weight: 700; border-bottom-right-radius: 12px; color: var(--text-color); z-index: 5;
@@ -319,7 +313,6 @@ main {
 /* --- DETAIL PROJET --- */
 .detail-header { margin-bottom: 2rem; max-width: 1000px; margin: 0 auto 2rem; text-align: left; }
 .back-to-projects-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted-color); text-decoration: none; margin-bottom: 1rem; }
-.back-to-projects-link:hover { color: var(--primary-color); }
 .detail-media-container { width: 100%; max-width: 1000px; margin: 0 auto 2rem; border-radius: 12px; overflow: hidden; background: var(--surface-color); }
 .detail-media-container img, .detail-media-container iframe { width: 100%; display: block; }
 .detail-media-container iframe { aspect-ratio: 16 / 9; border: none; }
@@ -339,11 +332,7 @@ main {
   background: rgba(17, 24, 39, 0.5); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px; padding: 2rem; text-align: center; transition: 0.3s;
 }
-.contact-option-card:hover { 
-  transform: translateY(-8px); 
-  border-color: var(--primary-color);
-  box-shadow: 0 15px 40px rgba(165, 141, 206, 0.2);
-}
+
 .contact-icon { 
   width: 60px; height: 60px; border-radius: 50%; 
   background: linear-gradient(135deg, #5312C4 0%, var(--primary-color) 100%);
@@ -352,9 +341,7 @@ main {
 }
 .contact-socials { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
 .contact-socials a { color: var(--text-muted-color); transition: 0.3s; }
-.contact-socials a:hover { color: var(--primary-color); }
 
-/* --- CORRECTION ICI : FORCE LA LIGNE MEME SUR MOBILE --- */
 .email-box, .phone-box {
   display: flex; 
   flex-direction: row !important; /* Force la ligne */
@@ -367,7 +354,6 @@ main {
   width: 100%;
 }
 
-/* Gère le texte trop long */
 .email-box span, .phone-box span {
     white-space: nowrap;
     overflow: hidden;
@@ -383,43 +369,75 @@ main {
     color: white; 
     cursor: pointer; 
     transition: 0.3s; 
-    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+    flex-shrink: 0;
 }
 #copy-email-btn.copied { background: #10b981; }
 
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+
+/* --- GESTION DES HOVERS (SOURIS UNIQUEMENT) --- */
+/* On applique ces styles SEULEMENT si l'appareil a une souris. */
+@media (hover: hover) {
+  
+  .nav-link:hover { color: var(--text-color); }
+
+  .cta-button:hover { 
+    transform: translateY(-4px) scale(1.05); /* Effet un peu plus subtil pour petit bouton */
+    box-shadow: 0 20px 45px rgba(83, 18, 196, 0.7), 0 0 40px rgba(165, 141, 206, 0.6);
+    border-color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+  }
+
+  .skill-item:hover { 
+    color: var(--primary-color); 
+    transform: translateY(-5px); 
+  }
+
+  .project-card:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--primary-color); 
+  }
+
+  .contact-option-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px rgba(165, 141, 206, 0.2);
+  }
+  
+  .contact-socials a:hover { color: var(--primary-color); }
+  
+  .back-to-projects-link:hover { color: var(--primary-color); }
+}
+
+/* Sur mobile, on veut quand même un petit effet quand on clique (active state) */
+.cta-button:active, .project-card:active {
+  transform: scale(0.98);
+}
+
+
 /* --- RESPONSIVE MOBILE & TABLETTE --- */
-
 @media (max-width: 1024px) {
-  .main-nav { display: none; } /* On cache la nav desktop */
-  .mobile-menu-btn { display: block; } /* On affiche le burger */
+  .main-nav { display: none; }
+  .mobile-menu-btn { display: block; }
   
-  .header .container {
-    justify-content: space-between;
-  }
-  
-  .logo {
-    position: relative;
-    left: 0;
-  }
+  .header .container { justify-content: space-between; }
+  .logo { position: relative; left: 0; }
 
-  /* Style du menu mobile quand ouvert */
+  /* Menu Mobile Plein Écran */
   .main-nav {
     position: fixed; top: 0; right: 0; width: 100%; height: 100vh;
     flex-direction: column; justify-content: center; 
     background: #130E61;
     transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
-    border-radius: 0; border: none; z-index: 101;
-    padding: 2rem;
+    border-radius: 0; border: none; z-index: 101; padding: 2rem;
   }
-  .main-nav.open { 
-    display: flex; /* On réaffiche en flex quand ouvert */
-    transform: translateX(0); 
-  }
+  .main-nav.open { display: flex; transform: translateX(0); }
   .nav-slider { display: none; }
+  
   .nav-link { 
-    font-size: 2rem; margin: 1rem 0; 
-    opacity: 0; transform: translateY(20px); 
-    transition: 0.4s ease forwards;
+    font-size: 2rem; margin: 1rem 0; opacity: 0; 
+    transform: translateY(20px); transition: 0.4s ease forwards;
   }
   .main-nav.open .nav-link { opacity: 1; transform: translateY(0); }
   .main-nav.open .nav-link:nth-child(1) { transition-delay: 0.1s; }
@@ -429,49 +447,60 @@ main {
 }
 
 @media (max-width: 768px) {
-  .cursor { display: none; }
-  body { cursor: auto; }
+  /* Désactiver le curseur custom sur tactile */
+  .cursor { display: none !important; }
+  body { cursor: auto !important; }
   
-  /* Correction chevauchement Header */
   .page-section { 
-    padding-top: 120px; /* Plus d'espace sous le header */
-    padding-bottom: 80px; 
+    padding-top: 100px; 
+    padding-bottom: 60px; 
   }
   
-  .hero-content {
-    margin-top: 2rem;
-  }
+  .hero-content { margin-top: 1rem; padding: 0; }
 
-  /* Grilles en 1 colonne sur mobile */
-  .projects-grid, .contact-grid { 
+  /* Grilles en 1 colonne */
+  .projects-grid, .contact-grid, .detail-info-grid { 
     grid-template-columns: 1fr; 
+    gap: 1.5rem;
   }
   
-  .detail-info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Ajustements A Propos */
+  /* A Propos */
   .about-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 2rem 1.5rem;
+    flex-direction: column; text-align: center; 
+    padding: 2rem 1rem; /* Réduit le padding latéral */
+    gap: 2rem;
   }
-  .about-text { min-width: auto; }
+  .about-text { width: 100%; }
   
-  .cta-button {
+  .cta-button { width: 100%; justify-content: center; }
+
+  /* --- CORRECTION CONTACT MOBILE --- */
+  .contact-option-card {
+    padding: 1.5rem 1rem; /* Moins de padding interne pour laisser place au contenu */
     width: 100%;
-    justify-content: center;
+    margin: 0;
+  }
+  
+  .email-box, .phone-box {
+    padding: 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .email-box span, .phone-box span {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 2.2rem; }
+  .hero-title { font-size: 2rem; }
   .section-title { font-size: 1.8rem; }
   
-  .about-image img { width: 180px; height: 180px; }
+  .container { padding: 0 1rem; }
   
-  .contact-option-card { padding: 1.5rem; }
+  .about-image img { width: 150px; height: 150px; }
+  
+  .project-card, .contact-option-card, .about-card {
+    border-radius: 12px;
+  }
 }
-
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
