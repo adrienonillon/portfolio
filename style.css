@@ -734,8 +734,9 @@ main {
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 2rem; }
-  .section-title { font-size: 1.8rem; }
+  .hero-title { font-size: 3rem; }
+  .hero-subtitle { font-size: 2rem; }
+  .section-title { font-size: 2rem; }
   
   .container { padding: 0 1rem; }
   
