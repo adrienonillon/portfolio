@@ -16,32 +16,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener("click", () => {
-      // Basculer la classe 'open'
+      // Basculer la classe 'open' sur le menu
       mainNav.classList.toggle("open");
+      // Basculer la classe 'active' sur le bouton (pour l'animation CSS)
+      mobileMenuBtn.classList.toggle("active");
       
-      // Changer l'icône (Menu <-> Croix)
+      // Bloquer le scroll
       if (mainNav.classList.contains("open")) {
-        mobileMenuBtn.innerHTML = '<i data-feather="x"></i>';
-        mobileMenuBtn.style.color = "var(--primary-color)";
-        document.body.style.overflow = "hidden"; // Bloque le scroll du body
+        document.body.style.overflow = "hidden"; 
       } else {
-        mobileMenuBtn.innerHTML = '<i data-feather="menu"></i>';
-        mobileMenuBtn.style.color = "";
-        document.body.style.overflow = ""; // Réactive le scroll
+        document.body.style.overflow = ""; 
       }
-      feather.replace();
     });
   }
 
   // Fermer le menu quand on clique sur un lien
   mobileLinks.forEach(link => {
     link.addEventListener("click", () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 1024) {
         mainNav.classList.remove("open");
-        mobileMenuBtn.innerHTML = '<i data-feather="menu"></i>';
-        mobileMenuBtn.style.color = "";
+        mobileMenuBtn.classList.remove("active"); // Enlever l'animation
         document.body.style.overflow = "";
-        feather.replace();
       }
     });
   });
@@ -111,8 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (err) {
           console.error("Erreur lors de la copie:", err);
           // Fallback for older browsers
-          textElement.select();
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
           document.execCommand("copy");
+          document.body.removeChild(textArea);
         }
       });
     }
@@ -244,15 +243,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const erasingSpeed = 40;
     const pauseBetween = 1400;
 
+    // Force l'animation sur mobile même si l'OS a "réduire les animations" activé
+    const prefersReducedMotion =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
     let roleIndex = 0;
     let charIndex = 0;
 
     const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (prefersReducedMotion && !isTouchDevice) {
       typedEl.textContent = roles[0];
       return;
     }
@@ -320,6 +321,22 @@ const projectDetails = {
     description: "",
     link: ""
   },
+    "proj-motion": {
+    title: "Motion Design Showreel",
+    type: "image",
+    url: "./assets/ONILLONAdrien_motiondesign_lieuxtouristique.mov",
+    tags: ["After Effects", "Motion"],
+    description: "Animation graphique et effets visuels pour une présentation dynamique.",
+    link: "#"
+  },
+    "proj-affiche": {
+    title: "Affiche Créative",
+    type: "image",
+    url: "./assets/affiche-fabio.png",
+    tags: ["Illustrator", "Print"],
+    description: "Conception graphique et mise en page pour un événement culturel.",
+    link: "#"
+  },
 };
 
 const detailPage = document.getElementById('projet-detail');
@@ -344,11 +361,13 @@ function showProjectDetail(projectId) {
   } else if (project.type === 'figma') {
     const figmaEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.url)}`;
     detailMedia.innerHTML = `<iframe src="${figmaEmbedUrl}" allowfullscreen></iframe>`;
+  } else if (project.url.endsWith('.mov') || project.url.endsWith('.mp4')) {
+    detailMedia.innerHTML = `<video controls src="${project.url}" style="width:100%; border-radius:12px;"></video>`;
   } else {
     detailMedia.innerHTML = `<img src="${project.url}" alt="${project.title}">`;
   }
 
-  if (project.link === "#") {
+  if (project.link === "#" || !project.link) {
     detailLink.style.display = 'none';
   } else {
     detailLink.style.display = 'inline-flex';
@@ -386,11 +405,16 @@ backToProjectsBtn.addEventListener('click', (e) => {
 });
 
 // --- FIX BUG PC : RECALCULER LA BARRE DE NAV AU CHARGEMENT ---
-// Cela force le slider à se placer correctement même si la police charge après
 window.addEventListener("load", () => {
     const activeLink = document.querySelector(".main-nav .nav-link.active");
     if(activeLink) {
         moveSlider(activeLink);
+    }
+    // Deep linking check
+    const hash = window.location.hash.substring(1);
+    if(hash && hash.startsWith('projet-')) {
+         const projectId = hash.replace('projet-', '');
+         showProjectDetail(projectId);
     }
 });
 window.addEventListener("resize", () => {
