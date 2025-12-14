@@ -72,53 +72,76 @@ body {
   background: linear-gradient(45deg, transparent 20%, rgba(83, 18, 196, 0.5) 60%, transparent 90%);
   clip-path: ellipse(85% 45% at 50% 95%);
   bottom: -15%;
-  animation: wave1 16s ease-in-out infinite;
+  animation: wave1 14s ease-in-out infinite;
 }
 .shape2 {
   background: linear-gradient(135deg, transparent 30%, rgba(165, 141, 206, 0.4) 70%, transparent 95%);
   clip-path: ellipse(75% 35% at 30% 85%);
   bottom: -10%;
-  animation: wave2 19s ease-in-out infinite;
+  animation: wave2 17s ease-in-out infinite;
 }
 .shape3 {
   background: linear-gradient(60deg, rgba(184, 182, 207, 0.35) 25%, transparent 70%);
   clip-path: ellipse(70% 40% at 80% 50%);
   top: 20%;
-  animation: wave3 22s ease-in-out infinite;
+  animation: wave3 20s ease-in-out infinite;
 }
 .shape4 {
   background: linear-gradient(180deg, rgba(83, 18, 196, 0.3) 40%, transparent 85%);
   clip-path: ellipse(60% 35% at 15% 30%);
   top: 10%;
-  animation: wave4 24s ease-in-out infinite;
+  animation: wave4 22s ease-in-out infinite;
 }
 .shape5 {
   background: linear-gradient(270deg, transparent 35%, rgba(165, 141, 206, 0.35) 65%, transparent 90%);
   clip-path: ellipse(80% 42% at 50% 50%);
   top: 50%;
   transform: translateY(-50%);
-  animation: wave5 20s ease-in-out infinite;
+  animation: wave5 18s ease-in-out infinite;
+}
+.shape6 {
+  background: linear-gradient(315deg, transparent 25%, rgba(165, 141, 206, 0.4) 65%, transparent 85%);
+  clip-path: ellipse(65% 40% at 90% 15%);
+  top: -5%;
+  right: -10%;
+  animation: wave6 21s ease-in-out infinite;
+}
+.shape7 {
+  background: linear-gradient(225deg, transparent 30%, rgba(83, 18, 196, 0.35) 60%, transparent 90%);
+  clip-path: ellipse(70% 38% at 10% 90%);
+  bottom: -8%;
+  left: -15%;
+  animation: wave7 19s ease-in-out infinite;
 }
 
 @keyframes wave1 {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-35px) scale(1.05); }
+  50% { transform: translateY(-60px) scale(1.08); }
 }
 @keyframes wave2 {
   0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-45px) translateX(25px); }
+  50% { transform: translateY(-70px) translateX(45px); }
 }
 @keyframes wave3 {
   0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-30px) translateX(-20px); }
+  50% { transform: translateY(-50px) translateX(-35px); }
 }
 @keyframes wave4 {
   0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-  50% { transform: translateY(-38px) translateX(-15px) scale(1.03); }
+  50% { transform: translateY(-60px) translateX(-30px) scale(1.06); }
 }
 @keyframes wave5 {
   0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-42px) translateX(18px); }
+  50% { transform: translateY(-70px) translateX(40px); }
+}
+
+@keyframes wave6 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-65px) translateX(-35px) scale(1.07); }
+}
+@keyframes wave7 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(55px) translateX(40px) scale(1.06); }
 }
 
 /* --- LAYOUT GLOBAL --- */
@@ -177,16 +200,26 @@ main {
 }
 
 /* --- HEADER --- */
+/* FIX: Header transparent et non-bloquant pour les clics */
 .header {
   padding: 1rem 0; 
   position: fixed; 
   width: 100%; 
   top: 0; 
   z-index: 100;
-  background: rgba(19, 14, 97, 0.85);
-  backdrop-filter: blur(5px);
+  background: transparent; /* Fond invisible */
+  backdrop-filter: none;   /* Pas de flou */
+  pointer-events: none;    /* Laisse passer les clics à travers le vide */
 }
-.header .container { display: flex; justify-content: center; align-items: center; }
+
+/* Réactive les clics sur le contenu (Logo, Nav, Burger) */
+.header .container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    pointer-events: auto; 
+}
+
 .logo {
   font-family: var(--font-family);
   font-size: 1.5rem; font-weight: 900; text-decoration: none; color: var(--text-color);
@@ -258,8 +291,6 @@ main {
   letter-spacing: 0.5px;
   opacity: 0;
   transform: translateY(20px);
-  
-  /* --- FIX: Empêche le retour à la ligne au survol --- */
   white-space: nowrap; 
 }
 
@@ -307,6 +338,20 @@ main {
   transition: 0.3s; font-size: 0.9rem;
 }
 
+.skill-item span {
+    white-space: normal;       /* Autorise le texte à passer à la ligne */
+    overflow-wrap: break-word; /* Coupe les mots s'ils sont vraiment trop longs */
+    line-height: 1.1;          /* Resserre légèrement les lignes pour l'esthétique */
+    text-align: left;          /* Garde le texte aligné à gauche */
+}
+
+/* FIX: Taille uniforme pour toutes les icônes (Trello, Monday, etc.) */
+.skill-item svg.feather {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+}
+
 /* --- PROJETS - MISE EN PAGE MASONRY --- */
 .section-title { 
   font-family: var(--font-family-title);
@@ -349,11 +394,9 @@ main {
 /* --- CORRECTION IMAGES COUPÉES --- */
 .project-image { 
     width: 100%;
-    /* Pas de aspect-ratio forcé ici pour Masonry */
     background: #000; 
 }
 
-/* On cible les img ET les vidéos */
 .project-image img, .project-image video { 
     width: 100%; 
     height: auto; 
@@ -374,7 +417,6 @@ main {
 .detail-header { margin-bottom: 2rem; max-width: 1000px; margin: 0 auto 2rem; text-align: left; }
 .back-to-projects-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted-color); text-decoration: none; margin-bottom: 1rem; }
 
-/* --- STYLE SPÉCIFIQUE POUR LES IMAGES DANS LE DÉTAIL --- */
 .detail-media-container { 
     width: 100%; 
     max-width: 1000px; 
@@ -404,21 +446,19 @@ main {
     height: 100%; 
 }
 
-/* --- FIX FOND LONG : align-items: start; --- */
 .detail-info-grid { 
     display: grid; 
     grid-template-columns: 2fr 1fr; 
     gap: 2rem; 
     max-width: 1000px; 
     margin: 0 auto; 
-    align-items: start; /* CORRECTION IMPORTANTE */
+    align-items: start; 
 }
 
 .detail-description-card, .detail-meta-card { background: rgba(17, 24, 39, 0.5); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
 .detail-tags-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
 .detail-tags-list span { background: var(--bg-color); padding: 0.35rem 0.85rem; border-radius: 12px; font-size: 0.85rem; }
 
-/* --- CORRECTION POUR LES BOUTONS DANS LA PAGE DÉTAIL --- */
 #detail-links-wrapper .cta-button {
     opacity: 1; 
     transform: none; 
@@ -634,7 +674,6 @@ main {
     padding-bottom: 60px; 
   }
 
-  /* --- CORRECTION ESSENTIELLE : HAUT CACHÉ SUR MOBILE --- */
   #a-propos, #contact {
     justify-content: flex-start; 
   }
@@ -643,6 +682,13 @@ main {
 
   /* Masonry Mobile: 1 colonne */
   .projects-grid { column-count: 1; }
+  
+  /* FIX: Rendre le clic explicite sur mobile */
+  .project-card {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
   
   /* Grilles en 1 colonne pour le reste */
   .contact-grid, .detail-info-grid { 
