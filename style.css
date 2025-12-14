@@ -1,11 +1,19 @@
+@font-face {
+  font-family: 'Novaro';
+  src: url('./assets/fonts/novaro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* --- VARIABLES & RESET --- */
 :root {
-  --bg-color: #030712;
-  --surface-color: #111827;
-  --primary-color: #4d5bce;
-  --text-color: #f9fafb;
-  --text-muted-color: #9ca3af;
-  --font-family: "Inter", sans-serif;
+  --bg-color: #130E61;
+  --surface-color: rgba(83, 18, 196, 0.3);
+  --primary-color: #A58DCE;
+  --text-color: #FFFFFF;
+  --text-muted-color: #B8B6CF;
+  --font-family: "Aldrich", sans-serif;
+  --font-family-title: "Novaro", "Aldrich", sans-serif;
   --transition-speed: 0.5s;
   --transition-easing: cubic-bezier(0.25, 1, 0.5, 1);
   --header-height: 80px;
@@ -45,23 +53,72 @@ body {
 }
 .cursor.hover {
   width: 50px; height: 50px;
-  background-color: rgba(77, 91, 206, 0.2);
+  background-color: rgba(165, 141, 206, 0.2);
 }
 
 .aurora-background {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   overflow: hidden; z-index: -1;
+  background: linear-gradient(180deg, #130E61 0%, #0a0740 100%);
 }
 .aurora-shape {
-  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(80px);
 }
-.shape1 { width: 500px; height: 500px; background: #5a67d8; top: -10%; left: -10%; animation: move1 20s infinite alternate; }
-.shape2 { width: 400px; height: 400px; background: #9f7aea; bottom: -5%; right: -5%; animation: move2 25s infinite alternate; }
-.shape3 { width: 350px; height: 350px; background: #4fd1c5; bottom: 20%; left: 20%; animation: move3 18s infinite alternate; }
+.shape1 {
+  background: linear-gradient(45deg, transparent 20%, rgba(83, 18, 196, 0.5) 60%, transparent 90%);
+  clip-path: ellipse(85% 45% at 50% 95%);
+  bottom: -15%;
+  animation: wave1 16s ease-in-out infinite;
+}
+.shape2 {
+  background: linear-gradient(135deg, transparent 30%, rgba(165, 141, 206, 0.4) 70%, transparent 95%);
+  clip-path: ellipse(75% 35% at 30% 85%);
+  bottom: -10%;
+  animation: wave2 19s ease-in-out infinite;
+}
+.shape3 {
+  background: linear-gradient(60deg, rgba(184, 182, 207, 0.35) 25%, transparent 70%);
+  clip-path: ellipse(70% 40% at 80% 50%);
+  top: 20%;
+  animation: wave3 22s ease-in-out infinite;
+}
+.shape4 {
+  background: linear-gradient(180deg, rgba(83, 18, 196, 0.3) 40%, transparent 85%);
+  clip-path: ellipse(60% 35% at 15% 30%);
+  top: 10%;
+  animation: wave4 24s ease-in-out infinite;
+}
+.shape5 {
+  background: linear-gradient(270deg, transparent 35%, rgba(165, 141, 206, 0.35) 65%, transparent 90%);
+  clip-path: ellipse(80% 42% at 50% 50%);
+  top: 50%;
+  transform: translateY(-50%);
+  animation: wave5 20s ease-in-out infinite;
+}
 
-@keyframes move1 { to { transform: translate(100px, 150px); } }
-@keyframes move2 { to { transform: translate(-150px, -100px); } }
-@keyframes move3 { to { transform: translate(100px, -100px); } }
+@keyframes wave1 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-35px) scale(1.05); }
+}
+@keyframes wave2 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-45px) translateX(25px); }
+}
+@keyframes wave3 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-30px) translateX(-20px); }
+}
+@keyframes wave4 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-38px) translateX(-15px) scale(1.03); }
+}
+@keyframes wave5 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-42px) translateX(18px); }
+}
 
 /* --- LAYOUT GLOBAL --- */
 .container {
@@ -115,6 +172,7 @@ main {
 }
 .header .container { display: flex; justify-content: center; align-items: center; }
 .logo {
+  font-family: var(--font-family);
   font-size: 1.5rem; font-weight: 900; text-decoration: none; color: var(--text-color);
   position: absolute; left: 2rem;
 }
@@ -141,22 +199,39 @@ main {
 
 /* --- HERO --- */
 .hero-content { text-align: center; max-width: 800px; margin: auto; }
-.hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; margin-bottom: 2rem; }
+.hero-title { 
+  font-family: var(--font-family-title);
+  font-size: clamp(2.5rem, 8vw, 4.5rem); 
+  font-weight: 900; 
+  margin-bottom: 2rem; 
+}
 .highlight-text {
-  background: linear-gradient(45deg, var(--primary-color), #818cf8);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  color: #A58DCE;
 }
 .hero-subtitle { font-size: clamp(1.5rem, 4vw, 2.75rem); color: var(--text-color); font-weight: 500; margin-bottom: 4rem; min-height: 1.2em; }
 .typed-cursor { animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
 .cta-button {
-  background-color: var(--primary-color); color: var(--text-color);
-  padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 700;
-  display: inline-flex; align-items: center; gap: 0.75rem; border: none;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background: linear-gradient(135deg, #5312C4 0%, #A58DCE 100%);
+  color: var(--text-color);
+  padding: 1.2rem 3rem; 
+  border-radius: 50px; 
+  text-decoration: none; 
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.75rem; 
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(83, 18, 196, 0.4), 0 0 20px rgba(165, 141, 206, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
-.cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(77, 91, 206, 0.3); }
+.cta-button:hover { 
+  transform: translateY(-5px) scale(1.05); 
+  box-shadow: 0 15px 35px rgba(83, 18, 196, 0.6), 0 0 30px rgba(165, 141, 206, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
+}
 
 /* --- A PROPOS --- */
 .about-card {
@@ -174,7 +249,13 @@ main {
 .skill-item:hover { color: var(--primary-color); transform: translateY(-5px); }
 
 /* --- PROJETS --- */
-.section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 2rem; color: var(--text-color); }
+.section-title { 
+  font-family: var(--font-family-title);
+  font-size: clamp(2rem, 5vw, 3rem); 
+  font-weight: 900; 
+  margin-bottom: 2rem; 
+  color: var(--text-color); 
+}
 .text-center { text-align: center; }
 
 /* Grid Responsive Automatique */
