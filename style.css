@@ -200,19 +200,20 @@ main {
 }
 
 /* --- HEADER --- */
-/* FIX: Header transparent et non-bloquant pour les clics */
 .header {
   padding: 1rem 0; 
   position: fixed; 
   width: 100%; 
   top: 0; 
   z-index: 100;
-  background: transparent; /* Fond invisible */
-  backdrop-filter: none;   /* Pas de flou */
-  pointer-events: none;    /* Laisse passer les clics à travers le vide */
+  
+  /* FIX 1 & 2 : Fond transparent et Clics traversants */
+  background: transparent; 
+  backdrop-filter: none;
+  pointer-events: none; 
 }
 
-/* Réactive les clics sur le contenu (Logo, Nav, Burger) */
+/* Réactive les clics uniquement sur les éléments interactifs du header */
 .header .container { 
     display: flex; 
     justify-content: center; 
@@ -338,14 +339,14 @@ main {
   transition: 0.3s; font-size: 0.9rem;
 }
 
+/* FIX 3 & 4 : Gestion de la taille des icônes et du retour à la ligne */
 .skill-item span {
-    white-space: normal;       /* Autorise le texte à passer à la ligne */
-    overflow-wrap: break-word; /* Coupe les mots s'ils sont vraiment trop longs */
-    line-height: 1.1;          /* Resserre légèrement les lignes pour l'esthétique */
-    text-align: left;          /* Garde le texte aligné à gauche */
+    white-space: normal;       
+    overflow-wrap: break-word; 
+    line-height: 1.1;          
+    text-align: left;          
 }
 
-/* FIX: Taille uniforme pour toutes les icônes (Trello, Monday, etc.) */
 .skill-item svg.feather {
     width: 24px;
     height: 24px;
@@ -709,7 +710,18 @@ main {
     margin-bottom: 2rem;
   }
   
-  .cta-button { width: 100%; justify-content: center; }
+  /* FIX 5 : Gestion des boutons trop longs sur mobile */
+  .cta-button { 
+    width: 100%; 
+    justify-content: center;
+    white-space: normal; /* AUTORISE le retour à la ligne */
+    display: flex;       
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 1rem;
+  }
 
   /* Contact */
   .contact-option-card {
