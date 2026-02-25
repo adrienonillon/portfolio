@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll(".main-nav .nav-link");
+  const navLinks = document.querySelectorAll(
+    ".main-nav .nav-link[href^=\"#\"]"
+  );
   const navSlider = document.querySelector(".main-nav .nav-slider");
   const pageSections = document.querySelectorAll(".page-section");
   const ctaLinks = document.querySelectorAll(".page-transition-link");
@@ -283,6 +285,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* --- DATA PROJETS (AVEC PLUSIEURS LIENS) --- */
 const projectDetails = {
+
+  "proj-bal": {
+    title: "Médiation Vidéo - Musée des Beaux-Arts de Limoges",
+    type: "image", 
+    url: "./assets/vidéo-collection.png", 
+    tags: ["After Effects", "Davinci Resolve", "Sound Design", "Motion Design"],
+    duration: "2.5 jours",
+    description: "Dans le cadre d'un projet de groupe pour le Musée des Beaux-Arts de Limoges, j'ai réalisé la partie Motion Design visant à présenter une œuvre aux visiteurs internationaux. J'ai conçu les maquettes animatiques, les écrans clés de la collection ainsi que l'animation finale. J'ai également géré l'intégralité du sound design sur DaVinci Resolve pour offrir une meilleur expérience aux touristes anglophones.",
+    links: [
+        { label: "Voir la vidéo", url: "https://youtube.com/shorts/1ZAJP-VxxQk" }
+    ]
+  },
+
   "proj-motion": {
     title: "Motion Design Showreel",
     type: "image",

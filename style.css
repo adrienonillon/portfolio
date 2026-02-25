@@ -501,6 +501,7 @@ main {
 .contact-socials { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
 .contact-socials a { color: var(--text-muted-color); transition: 0.3s; }
 
+
 .email-box, .phone-box {
   display: flex; 
   flex-direction: row !important; 
@@ -562,7 +563,7 @@ main {
     border-color: var(--primary-color);
     box-shadow: 0 15px 40px rgba(165, 141, 206, 0.2);
   }
-  
+
   .contact-socials a:hover { color: var(--primary-color); }
   
   .back-to-projects-link:hover { color: var(--primary-color); }

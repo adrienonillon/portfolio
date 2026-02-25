@@ -1,286 +1,308 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adrien Onillon - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  </head>
-  <body>
-    <div class="cursor"></div>
-    <div class="aurora-background">
-      <div class="aurora-shape shape1"></div>
-      <div class="aurora-shape shape2"></div>
-      <div class="aurora-shape shape3"></div>
-      <div class="aurora-shape shape4"></div>
-      <div class="aurora-shape shape5"></div>
-      <div class="aurora-shape shape6"></div>
-      <div class="aurora-shape shape7"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adrien Onillon - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+
+<body>
+  <div class="cursor"></div>
+  <div class="aurora-background">
+    <div class="aurora-shape shape1"></div>
+    <div class="aurora-shape shape2"></div>
+    <div class="aurora-shape shape3"></div>
+    <div class="aurora-shape shape4"></div>
+    <div class="aurora-shape shape5"></div>
+    <div class="aurora-shape shape6"></div>
+    <div class="aurora-shape shape7"></div>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <a href="#accueil" class="logo">Adrien Onillon</a>
+
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+
+      <nav class="main-nav">
+        <div class="nav-slider"></div>
+        <a href="#accueil" class="nav-link active">Accueil</a>
+        <a href="#a-propos" class="nav-link">À propos</a>
+        <a href="#projets" class="nav-link">Projets</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="./assets/CV%20-%20Adrien%20Onillon%20.pdf" class="nav-link" download>CV</a>
+      </nav>
     </div>
+  </header>
 
-    <header class="header">
-      <div class="container">
-        <a href="#accueil" class="logo">Adrien Onillon</a>
-        
-        <button class="mobile-menu-btn" aria-label="Menu">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-          </span>
-        </button>
+  <main id="main-content">
 
-        <nav class="main-nav">
-          <div class="nav-slider"></div>
-          <a href="#accueil" class="nav-link active">Accueil</a>
-          <a href="#a-propos" class="nav-link">À propos</a>
-          <a href="#projets" class="nav-link">Projets</a>
-          <a href="#contact" class="nav-link">Contact</a>
-        </nav>
+    <section id="accueil" class="page-section active">
+      <div class="hero">
+        <div class="container hero-content">
+          <h1 class="hero-title">
+            Adrien <span class="highlight-text">Onillon</span>
+          </h1>
+          <h2 class="hero-subtitle">
+            <span id="typed-text"></span><span class="typed-cursor">|</span>
+            <span class="visually-hidden">Monteur Vidéo, 3D Artist, Motion Designer, Graphiste, Web designer</span>
+          </h2>
+          <a href="#projets" class="cta-button page-transition-link">
+            Voir mes réalisations <i data-feather="arrow-right"></i>
+          </a>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <main id="main-content">
-      
-      <section id="accueil" class="page-section active">
-        <div class="hero">
-          <div class="container hero-content">
-            <h1 class="hero-title">
-              Adrien <span class="highlight-text">Onillon</span>
-            </h1>
-            <h2 class="hero-subtitle">
-              <span id="typed-text"></span><span class="typed-cursor">|</span>
-              <span class="visually-hidden">Monteur Vidéo, 3D Artist, Motion Designer, Graphiste, Web designer</span>
-            </h2>
-            <a href="#projets" class="cta-button page-transition-link">
-              Voir mes réalisations <i data-feather="arrow-right"></i>
+    <section id="a-propos" class="page-section">
+      <div class="page-content">
+        <div class="container about-container-wrapper">
+          <div class="about-card">
+            <div class="about-image">
+              <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon" />
+            </div>
+            <div class="about-text">
+              <h2 class="section-title">À propos</h2>
+              <p>
+                Actuellement en deuxième année de BUT MMI à Limoges, je me consacre au développement de mes compétences
+                en montage vidéo, 3D, design graphique et web design.
+              </p>
+              <p>
+                Mon objectif est de rejoindre une équipe dynamique pour participer à des projets innovants, mettre en
+                pratique mes acquis et continuer à développer mes compétences techniques et ma vision créative.
+              </p>
+              <p class="skills-title">Outils maîtrisés</p>
+              <div class="skills-grid">
+                <div class="skill-item"><i data-feather="video"></i><span>Davinci Resolve</span></div>
+                <div class="skill-item"><i data-feather="box"></i><span>Blender</span></div>
+                <div class="skill-item"><i data-feather="figma"></i><span>Figma</span></div>
+                <div class="skill-item"><i data-feather="pen-tool"></i><span>Suite Adobe</span></div>
+                <div class="skill-item"><i data-feather="code"></i><span>VS Code</span></div>
+                <div class="skill-item"><i data-feather="clipboard"></i><span>Trello / Monday</span></div>
+                <div class="skill-item"><i data-feather="cpu"></i><span>AI</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets" class="page-section">
+      <div class="page-content projects-section">
+        <div class="container">
+          <h2 class="section-title text-center">Mes Projets</h2>
+          <div class="projects-grid">
+
+            <div class="project-card" data-project-id="proj-bal">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/vidéo-collection.png" alt="Motion Design Musée des Beaux-Arts">
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Médiation Vidéo - BAL Limoges</h3>
+                <p class="project-description">Motion design et sound design pour la présentation d'une œuvre du musée.
+                </p>
+                <div class="project-tags"><span>After Effects</span><span>Davinci Resolve</span><span>Motion</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-motion">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/affiche-motion.jpg" alt="Motion design">
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Affiche Motion Design</h3>
+                <p class="project-description">Animation graphique et effets visuels d'une affiche</p>
+                <div class="project-tags"><span>After Effects</span><span>Illustrator</span></div>
+              </div>
+            </div>
+
+            <div class="project-card vertical" data-project-id="proj-affiche">
+              <span class="project-badge personnel">Personnel</span>
+              <div class="project-image">
+                <img src="./assets/affiche-fabio.png" alt="Création d'affiche" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Affiche Fabio Quartararo</h3>
+                <p class="project-description">Conception graphique d'une affiche pour mettre en avant Fabio Quartararo.
+                </p>
+                <div class="project-tags"><span>Illustrator</span><span>Photoshop</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-dating">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/Mycrew.png" alt="Application de rencontre" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Application de rencontre</h3>
+                <p class="project-description">Conception UX/UI complète d'une application de rencontre sportive sur
+                  Figma.</p>
+                <div class="project-tags"><span>Figma</span><span>UI/UX</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-podcast">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/vignette-podcast.png" alt="Vignette de Podcast" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Vignette Podcast</h3>
+                <p class="project-description">Création visuelle pour l'identité d'un podcast</p>
+                <div class="project-tags"><span>Photoshop</span><span>Graphisme</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-1">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/Behance.png" alt="Prototype page behance" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Prototype page behance</h3>
+                <p class="project-description">Réalisation d'un prototype de page behance</p>
+                <div class="project-tags"><span>Figma</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-5">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/loc'sur.png" alt="Start up fictive - Loc'sur" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Start up fictive - Loc'sur</h3>
+                <p class="project-description">Site Onepage, responsive et accessible avec développement dynamique JS.
+                </p>
+                <div class="project-tags"><span>HTML/CSS/JS</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-6">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/SAE2.02.png" alt="Applications de sport" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Applications de Sport Héméra</h3>
+                <p class="project-description">Prototypage Figma et réalisation vidéo publicitaire.</p>
+                <div class="project-tags"><span>Vidéo</span><span>Réalisation</span><span>Figma</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-7">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/site-streaming.png" alt="Site de Streaming" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Site de Streaming</h3>
+                <p class="project-description">Développement complet back-end et front-end.</p>
+                <div class="project-tags"><span>HTML/CSS/JS</span><span>PHP</span></div>
+              </div>
+            </div>
+
+            <div class="project-card" data-project-id="proj-8">
+              <span class="project-badge universitaire">Universitaire</span>
+              <div class="project-image">
+                <img src="./assets/olive-oil.png" alt="Olive Oil" />
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Olive Oil</h3>
+                <p class="project-description">Prototype pour un site de vente d'huile d'olive.</p>
+                <div class="project-tags"><span>Figma</span><span>UI/UX</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="page-section">
+      <div class="page-content contact-page">
+        <div class="container">
+          <div class="contact-header text-center">
+            <h2 class="section-title">Contactez-moi</h2>
+            <p class="contact-subtitle">Vous avez une question ou souhaitez simplement discuter ? N'hésitez pas.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-option-card">
+              <div class="contact-icon"><i data-feather="message-square"></i></div>
+              <h3>Réseaux Sociaux</h3>
+              <div class="contact-socials">
+                <a href="https://www.linkedin.com/in/adrien-onillon-7bb121332/" data-magnetic><i
+                    data-feather="linkedin"></i></a>
+                <a href="https://github.com/adrienonillon" data-magnetic><i data-feather="github"></i></a>
+              </div>
+            </div>
+            <div class="contact-option-card">
+              <div class="contact-icon"><i data-feather="mail"></i></div>
+              <h3>Email</h3>
+              <div class="email-box">
+                <span id="email-text">adrienonillon12@gmail.com</span>
+                <button id="copy-email-btn" title="Copier l'adresse email"><i data-feather="copy"></i></button>
+              </div>
+            </div>
+            <div class="contact-option-card">
+              <div class="contact-icon"><i data-feather="phone"></i></div>
+              <h3>Téléphone</h3>
+              <div class="phone-box">
+                <span id="phone-text">06 71 17 26 93</span>
+                <button id="copy-phone-btn" title="Copier le numéro"><i data-feather="copy"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projet-detail" class="page-section">
+      <div class="page-content detail-page-content">
+        <div class="container">
+          <div class="detail-header">
+            <a href="#projets" id="back-to-projets-btn" class="back-to-projects-link">
+              <i data-feather="arrow-left"></i> Retour aux projets
             </a>
+            <h2 id="detail-title">Titre du Projet</h2>
           </div>
-        </div>
-      </section>
-
-      <section id="a-propos" class="page-section">
-        <div class="page-content">
-          <div class="container about-container-wrapper">
-            <div class="about-card">
-              <div class="about-image">
-                <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon" />
-              </div>
-              <div class="about-text">
-                <h2 class="section-title">À propos</h2>
-                <p>
-                  Actuellement en deuxième année de BUT MMI à Limoges, je me consacre au développement de mes compétences en montage vidéo, 3D, design graphique et web design.
-                </p>
-                <p>
-                  Mon objectif est de rejoindre une équipe dynamique pour participer à des projets innovants, mettre en pratique mes acquis et continuer à développer mes compétences techniques et ma vision créative.
-                </p>
-                <p class="skills-title">Outils maîtrisés</p>
-                <div class="skills-grid">
-                  <div class="skill-item"><i data-feather="video"></i><span>Davinci Resolve</span></div>
-                  <div class="skill-item"><i data-feather="box"></i><span>Blender</span></div>
-                  <div class="skill-item"><i data-feather="figma"></i><span>Figma</span></div>
-                  <div class="skill-item"><i data-feather="pen-tool"></i><span>Suite Adobe</span></div>
-                  <div class="skill-item"><i data-feather="code"></i><span>VS Code</span></div>
-                  <div class="skill-item"><i data-feather="clipboard"></i><span>Trello / Monday</span></div>
-                  <div class="skill-item"><i data-feather="cpu"></i><span>AI</span></div>
-                </div>
-              </div>
+          <div class="detail-media-container" id="detail-media"></div>
+          <div class="detail-info-grid">
+            <div class="detail-description-card">
+              <h3>Description</h3>
+              <p id="detail-description"></p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projets" class="page-section">
-        <div class="page-content projects-section">
-          <div class="container">
-            <h2 class="section-title text-center">Mes Projets</h2>
-            <div class="projects-grid">
-              
-              <div class="project-card" data-project-id="proj-motion">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                   <img src="./assets/affiche-motion.jpg" alt="Motion design">
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Affiche Motion Design</h3>
-                  <p class="project-description">Animation graphique et effets visuels d'une affiche</p>
-                  <div class="project-tags"><span>After Effects</span><span>Illustrator</span></div>
-                </div>
-              </div>
-
-              <div class="project-card vertical" data-project-id="proj-affiche">
-                <span class="project-badge personnel">Personnel</span>
-                <div class="project-image">
-                   <img src="./assets/affiche-fabio.png" alt="Création d'affiche" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Affiche Fabio Quartararo</h3>
-                  <p class="project-description">Conception graphique d'une affiche pour mettre en avant Fabio Quartararo.</p>
-                  <div class="project-tags"><span>Illustrator</span><span>Photoshop</span></div>
-                </div>
-              </div>
-
-              <div class="project-card" data-project-id="proj-dating">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/Mycrew.png" alt="Application de rencontre" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Application de rencontre</h3>
-                  <p class="project-description">Conception UX/UI complète d'une application de rencontre sportive sur Figma.</p>
-                  <div class="project-tags"><span>Figma</span><span>UI/UX</span></div>
-                </div>
-              </div>
-
-              <div class="project-card" data-project-id="proj-podcast">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/vignette-podcast.png" alt="Vignette de Podcast" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Vignette Podcast</h3>
-                  <p class="project-description">Création visuelle pour l'identité d'un podcast</p>
-                  <div class="project-tags"><span>Photoshop</span><span>Graphisme</span></div>
-                </div>
-              </div>
-
-              <div class="project-card" data-project-id="proj-1">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/Behance.png" alt="Prototype page behance" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Prototype page behance</h3>
-                  <p class="project-description">Réalisation d'un prototype de page behance</p>
-                  <div class="project-tags"><span>Figma</span></div>
-                </div>
-              </div>           
-
-              <div class="project-card" data-project-id="proj-5">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/loc'sur.png" alt="Start up fictive - Loc'sur" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Start up fictive - Loc'sur</h3>
-                  <p class="project-description">Site Onepage, responsive et accessible avec développement dynamique JS.</p>
-                  <div class="project-tags"><span>HTML/CSS/JS</span></div>
-                </div>
-              </div>
-
-              <div class="project-card" data-project-id="proj-6">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/SAE2.02.png" alt="Applications de sport" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Applications de Sport Héméra</h3>
-                  <p class="project-description">Prototypage Figma et réalisation vidéo publicitaire.</p>
-                  <div class="project-tags"><span>Vidéo</span><span>Réalisation</span><span>Figma</span></div>
-                </div>
-              </div>
-              
-              <div class="project-card" data-project-id="proj-7">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/site-streaming.png" alt="Site de Streaming" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Site de Streaming</h3>
-                  <p class="project-description">Développement complet back-end et front-end.</p>
-                  <div class="project-tags"><span>HTML/CSS/JS</span><span>PHP</span></div>
-                </div>
-              </div>
-
-              <div class="project-card" data-project-id="proj-8">
-                <span class="project-badge universitaire">Universitaire</span>
-                <div class="project-image">
-                  <img src="./assets/olive-oil.png" alt="Olive Oil" />
-                </div>
-                <div class="project-info">
-                  <h3 class="project-title">Olive Oil</h3>
-                  <p class="project-description">Prototype pour un site de vente d'huile d'olive.</p>
-                  <div class="project-tags"><span>Figma</span><span>UI/UX</span></div>
-                </div>
-              </div>
-
-            </div> 
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="page-section">
-        <div class="page-content contact-page">
-          <div class="container">
-            <div class="contact-header text-center">
-              <h2 class="section-title">Contactez-moi</h2>
-              <p class="contact-subtitle">Vous avez une question ou souhaitez simplement discuter ? N'hésitez pas.</p>
-            </div>
-            <div class="contact-grid">
-              <div class="contact-option-card">
-                <div class="contact-icon"><i data-feather="message-square"></i></div>
-                <h3>Réseaux Sociaux</h3>
-                <div class="contact-socials">
-                  <a href="https://www.linkedin.com/in/adrien-onillon-7bb121332/" data-magnetic><i data-feather="linkedin"></i></a>
-                  <a href="https://github.com/adrienonillon" data-magnetic><i data-feather="github"></i></a>
-                </div>
-              </div>
-              <div class="contact-option-card">
-                <div class="contact-icon"><i data-feather="mail"></i></div>
-                <h3>Email</h3>
-                <div class="email-box">
-                  <span id="email-text">adrienonillon12@gmail.com</span>
-                  <button id="copy-email-btn" title="Copier l'adresse email"><i data-feather="copy"></i></button>
-                </div>
-              </div>
-              <div class="contact-option-card">
-                <div class="contact-icon"><i data-feather="phone"></i></div>
-                <h3>Téléphone</h3>
-                <div class="phone-box">
-                  <span id="phone-text">06 71 17 26 93</span>
-                  <button id="copy-phone-btn" title="Copier le numéro"><i data-feather="copy"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projet-detail" class="page-section">
-        <div class="page-content detail-page-content">
-          <div class="container">
-            <div class="detail-header">
-              <a href="#projets" id="back-to-projets-btn" class="back-to-projects-link">
-                <i data-feather="arrow-left"></i> Retour aux projets
-              </a>
-              <h2 id="detail-title">Titre du Projet</h2>
-            </div>
-            <div class="detail-media-container" id="detail-media"></div>
-            <div class="detail-info-grid">
-              <div class="detail-description-card">
-                <h3>Description</h3>
-                <p id="detail-description"></p>
-              </div>
-              <div class="detail-meta-card">
-                <h3>Durée</h3>
-                <p id="detail-duration" style="color: var(--text-color); margin-bottom: 1.5rem; font-weight: 500;"></p>
-                <h3>Compétences</h3>
-                <div id="detail-tags" class="detail-tags-list"></div>
-                <div id="detail-links-wrapper" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <div class="detail-meta-card">
+              <h3>Durée</h3>
+              <p id="detail-duration" style="color: var(--text-color); margin-bottom: 1.5rem; font-weight: 500;"></p>
+              <h3>Compétences</h3>
+              <div id="detail-tags" class="detail-tags-list"></div>
+              <div id="detail-links-wrapper"
+                style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
                 </a>
               </div>
             </div>
           </div>
         </div>
-      </section>
+    </section>
 
-    </main>
-    <script src="script.js"></script>
-    <script>feather.replace();</script>
-  </body>
+  </main>
+  <script src="script.js"></script>
+  <script>feather.replace();</script>
+</body>
+
 </html>
