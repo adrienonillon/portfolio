@@ -38,110 +38,125 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  cursor: none; 
 }
 
-/* --- CURSEUR & FOND --- */
-.cursor {
-  width: 20px; height: 20px;
-  border: 2px solid var(--primary-color);
-  border-radius: 50%;
+/* --- PRELOADER --- */
+#preloader {
   position: fixed;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 9999;
-  transition: width 0.3s, height 0.3s, background-color 0.3s, transform 0.1s linear;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #130E61 0%, #0a0740 100%);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-.cursor.hover {
-  width: 50px; height: 50px;
-  background-color: rgba(165, 141, 206, 0.2);
+#preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.preloader-logo {
+  font-family: var(--font-family-title);
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 900;
+  color: var(--text-color);
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
+  animation: preloaderPulse 1.8s ease-in-out infinite;
+}
+.preloader-logo span {
+  color: var(--primary-color);
+}
+.preloader-bar {
+  width: min(280px, 60vw);
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.preloader-bar-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5312C4 0%, #A58DCE 100%);
+  box-shadow: 0 0 12px rgba(165, 141, 206, 0.6);
+  transition: width 0.3s ease;
+}
+.preloader-percent {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-muted-color);
+  letter-spacing: 1px;
+}
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
+/* --- FOND --- */
 .aurora-background {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   overflow: hidden; z-index: -1;
   background: linear-gradient(180deg, #130E61 0%, #0a0740 100%);
 }
 .aurora-shape {
+  /* Une seule forme (shape1) est animee : plusieurs calques flous animes en
+     meme temps faisaient trop ramer. Les autres restent statiques. */
   position: absolute;
   width: 100%;
   height: 100%;
-  filter: blur(80px);
+  filter: blur(55px);
 }
 .shape1 {
   background: linear-gradient(45deg, transparent 20%, rgba(83, 18, 196, 0.5) 60%, transparent 90%);
   clip-path: ellipse(85% 45% at 50% 95%);
   bottom: -15%;
-  animation: wave1 14s ease-in-out infinite;
+  will-change: transform;
+  animation: wave1 22s ease-in-out infinite;
 }
 .shape2 {
   background: linear-gradient(135deg, transparent 30%, rgba(165, 141, 206, 0.4) 70%, transparent 95%);
   clip-path: ellipse(75% 35% at 30% 85%);
   bottom: -10%;
-  animation: wave2 17s ease-in-out infinite;
 }
 .shape3 {
   background: linear-gradient(60deg, rgba(184, 182, 207, 0.35) 25%, transparent 70%);
   clip-path: ellipse(70% 40% at 80% 50%);
   top: 20%;
-  animation: wave3 20s ease-in-out infinite;
 }
 .shape4 {
   background: linear-gradient(180deg, rgba(83, 18, 196, 0.3) 40%, transparent 85%);
   clip-path: ellipse(60% 35% at 15% 30%);
   top: 10%;
-  animation: wave4 22s ease-in-out infinite;
 }
 .shape5 {
   background: linear-gradient(270deg, transparent 35%, rgba(165, 141, 206, 0.35) 65%, transparent 90%);
   clip-path: ellipse(80% 42% at 50% 50%);
   top: 50%;
   transform: translateY(-50%);
-  animation: wave5 18s ease-in-out infinite;
 }
 .shape6 {
   background: linear-gradient(315deg, transparent 25%, rgba(165, 141, 206, 0.4) 65%, transparent 85%);
   clip-path: ellipse(65% 40% at 90% 15%);
   top: -5%;
   right: -10%;
-  animation: wave6 21s ease-in-out infinite;
 }
 .shape7 {
   background: linear-gradient(225deg, transparent 30%, rgba(83, 18, 196, 0.35) 60%, transparent 90%);
   clip-path: ellipse(70% 38% at 10% 90%);
   bottom: -8%;
   left: -15%;
-  animation: wave7 19s ease-in-out infinite;
 }
 
 @keyframes wave1 {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-60px) scale(1.08); }
-}
-@keyframes wave2 {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-70px) translateX(45px); }
-}
-@keyframes wave3 {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-50px) translateX(-35px); }
-}
-@keyframes wave4 {
-  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-  50% { transform: translateY(-60px) translateX(-30px) scale(1.06); }
-}
-@keyframes wave5 {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-70px) translateX(40px); }
-}
-
-@keyframes wave6 {
-  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-  50% { transform: translateY(-65px) translateX(-35px) scale(1.07); }
-}
-@keyframes wave7 {
-  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-  50% { transform: translateY(55px) translateX(40px) scale(1.06); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
 }
 
 /* --- LAYOUT GLOBAL --- */
@@ -374,9 +389,12 @@ main {
 }
 
 .project-card {
-  position: relative; background: rgba(17, 24, 39, 0.5); backdrop-filter: blur(15px);
+  /* Pas de backdrop-filter ici : sur 10 cartes au-dessus d'un fond anime,
+     le flou force un recalcul couteux a chaque frame de scroll/animation. */
+  position: relative; background: rgba(17, 24, 39, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;
   transition: transform 0.3s, border-color 0.3s; cursor: pointer;
+  will-change: transform;
   
   /* Paramètres importants pour Masonry */
   break-inside: avoid; 
@@ -667,11 +685,7 @@ main {
 }
 
 @media (max-width: 768px) {
-  /* Désactiver le curseur custom sur tactile */
-  .cursor { display: none !important; }
-  body { cursor: auto !important; }
-  
-  .page-section { 
+  .page-section {
     padding-top: 100px; 
     padding-bottom: 60px; 
   }

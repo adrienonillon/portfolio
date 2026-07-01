@@ -1,11 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // --- PRELOADER ---
+  (function () {
+    const preloader = document.getElementById("preloader");
+    if (!preloader) return;
+
+    const fill = document.getElementById("preloader-fill");
+    const percentLabel = document.getElementById("preloader-percent");
+    let hidden = false;
+
+    function hidePreloader() {
+      if (hidden) return;
+      hidden = true;
+      preloader.classList.add("loaded");
+      setTimeout(() => preloader.remove(), 700);
+    }
+
+    function setProgress(percent) {
+      if (fill) fill.style.width = percent + "%";
+      if (percentLabel) percentLabel.textContent = percent + "%";
+    }
+
+    const images = Array.from(document.images);
+    const total = images.length;
+    let loadedCount = 0;
+
+    if (total === 0) {
+      setProgress(100);
+      setTimeout(hidePreloader, 250);
+    } else {
+      images.forEach((img) => {
+        const onDone = () => {
+          loadedCount++;
+          setProgress(Math.round((loadedCount / total) * 100));
+          if (loadedCount >= total) setTimeout(hidePreloader, 250);
+        };
+        if (img.complete) {
+          onDone();
+        } else {
+          img.addEventListener("load", onDone);
+          img.addEventListener("error", onDone);
+        }
+      });
+    }
+
+    // Filet de sécurité si une ressource ne déclenche jamais son événement
+    window.addEventListener("load", () => {
+      setProgress(100);
+      setTimeout(hidePreloader, 300);
+    });
+  })();
+
   const navLinks = document.querySelectorAll(
     ".main-nav .nav-link[href^=\"#\"]"
   );
   const navSlider = document.querySelector(".main-nav .nav-slider");
   const pageSections = document.querySelectorAll(".page-section");
   const ctaLinks = document.querySelectorAll(".page-transition-link");
-  const cursor = document.querySelector(".cursor");
   const copyEmailBtn = document.getElementById("copy-email-btn");
   const emailText = document.getElementById("email-text");
   const copyPhoneBtn = document.getElementById("copy-phone-btn");
@@ -42,21 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
-  // --- CURSOR ANIMATION ---
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.top = e.clientY + "px";
-    cursor.style.left = e.clientX + "px";
-  });
-
-  document
-    .querySelectorAll(
-      "a, button, .project-card, .skill-item, .contact-option-card"
-    )
-    .forEach((el) => {
-      el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
-      el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
-    });
 
   // --- COPY FUNCTIONS ---
   function setupCopyButton(button, textElement, successMessage = "Copié !") {
@@ -289,7 +324,7 @@ const projectDetails = {
   "proj-bal": {
     title: "Médiation Vidéo - Musée des Beaux-Arts de Limoges",
     type: "image", 
-    url: "./assets/vidéo-collection.png", 
+    url: "./assets/vidéo-collection.jpg",
     tags: ["After Effects", "Davinci Resolve", "Sound Design", "Motion Design"],
     duration: "2.5 jours",
     description: "Dans le cadre d'un projet de groupe pour le Musée des Beaux-Arts de Limoges, j'ai réalisé la partie Motion Design visant à présenter une œuvre aux visiteurs internationaux. J'ai conçu les maquettes animatiques, les écrans clés de la collection ainsi que l'animation finale. J'ai également géré l'intégralité du sound design sur DaVinci Resolve pour offrir une meilleur expérience aux touristes anglophones.",
@@ -312,7 +347,7 @@ const projectDetails = {
   "proj-dating": {
     title: "Application de rencontre UI/UX",
     type: "image", 
-    url: "./assets/Mycrew.png", 
+    url: "./assets/Mycrew.jpg",
     tags: ["Figma", "UI Design", "UX Research", "Mobile First"],
     duration: "2 mois (en parallèle)",
     description: "Conception UI/UX complète d'une application de rencontre centrée sur le sport. Projet réalisé en 2ème année à partir d'une charte graphique et de logos imposés.",
@@ -323,7 +358,7 @@ const projectDetails = {
   "proj-5": {
     title: "Start up fictive - Loc'sur",
     type: "web",
-    url: "./assets/loc'sur.png", 
+    url: "./assets/loc'sur.jpg",
     tags: ["HTML5", "CSS3", "JavaScript", "Intégration Web"],
     duration: "2 semaines",
     description: "Développement complet du site vitrine de 'Loc'sur', une start-up fictive. Premier projet d'envergure intégrant HTML, CSS et JavaScript.",
@@ -334,7 +369,7 @@ const projectDetails = {
   "proj-6": {
     title: "Applications de sport pour Héméra",
     type: "image",
-    url: "./assets/SAE2.02.png",
+    url: "./assets/SAE2.02.jpg",
     tags: ["Davinci Resolve", "Figma", "Tournage", "Travail d'équipe"],
     duration: "2 semaines",
     description: "Projet de groupe visant à inciter les coworkers d'Héméra à faire du sport. Réalisation d'un prototype d'application et d'une publicité vidéo.",
@@ -346,7 +381,7 @@ const projectDetails = {
   "proj-affiche": {
     title: "Affiche Créative - Fabio Quartararo",
     type: "image",
-    url: "./assets/affiche-fabio.png",
+    url: "./assets/affiche-fabio.jpg",
     tags: ["Photoshop", "Illustrator", "Détourage", "Composition"],
     duration: "1 jour",
     description: "Création graphique mettant à l'honneur l'athlète Fabio Quartararo. La composition joue sur la dualité entre l'action (course) et la victoire.",
@@ -355,7 +390,7 @@ const projectDetails = {
   "proj-podcast": {
     title: "Vignette Podcast Universitaire",
     type: "image",
-    url: "./assets/vignette-podcast.png", 
+    url: "./assets/vignette-podcast.jpg",
     tags: ["Photoshop", "Identité Visuelle", "Storytelling", "Graphisme"],
     duration: "1 jour",
     description: "Conception de l'identité visuelle d'un podcast sur le thème de l'enquête et de la vérité.",
@@ -364,7 +399,7 @@ const projectDetails = {
   "proj-7": {
     title: "Site de Streaming",
     type: "web",
-    url: "./assets/site-streaming.png",
+    url: "./assets/site-streaming.jpg",
     tags: ["PHP", "MySQL", "HTML/CSS", "Base de données"],
     duration: "2 semaines",
     description: "Développement Back-End et Front-End d'une plateforme de streaming vidéo (1ère année). Gestion de base de données MySQL et PHP.",
@@ -375,7 +410,7 @@ const projectDetails = {
   "proj-1": {
     title: "Prototype page Behance",
     type: "image",
-    url: "./assets/Behance.png",
+    url: "./assets/Behance.jpg",
     tags: ["Figma", "Web Design", "Pixel Perfect", "Analyse"],
     duration: "1 semaine",
     description: "Reproduction fidèle d'une page projet Behance (Pixel Perfect). Exercice pédagogique de 1ère année pour maîtriser l'interface de Figma.",
@@ -386,7 +421,7 @@ const projectDetails = {
   "proj-8": {
     title: "Olive Oil - E-commerce",
     type: "image",
-    url: "./assets/olive-oil.png",
+    url: "./assets/olive-oil.jpg",
     tags: ["Figma", "Auto-Layout", "E-commerce", "UI Design"],
     duration: "3 semaines",
     description: "Conception d'une maquette pour un site e-commerce d'huile d'olive haut de gamme. Projet axé sur l'apprentissage approfondi de l'Auto-Layout sur Figma.",

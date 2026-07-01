@@ -8,12 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=8" />
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
 
 <body>
-  <div class="cursor"></div>
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">Adrien <span>Onillon</span></div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill" id="preloader-fill"></div>
+      </div>
+      <div class="preloader-percent" id="preloader-percent">0%</div>
+    </div>
+  </div>
+
   <div class="aurora-background">
     <div class="aurora-shape shape1"></div>
     <div class="aurora-shape shape2"></div>
@@ -69,7 +78,7 @@
         <div class="container about-container-wrapper">
           <div class="about-card">
             <div class="about-image">
-              <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon" />
+              <img src="./assets/photo-présentation.png" alt="Portrait de Adrien Onillon" width="374" height="666" loading="eager" />
             </div>
             <div class="about-text">
               <h2 class="section-title">À propos</h2>
@@ -106,7 +115,7 @@
             <div class="project-card" data-project-id="proj-bal">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/vidéo-collection.png" alt="Motion Design Musée des Beaux-Arts">
+                <img src="./assets/vidéo-collection.jpg" alt="Motion Design Musée des Beaux-Arts" width="958" height="1400" loading="lazy">
               </div>
               <div class="project-info">
                 <h3 class="project-title">Médiation Vidéo - BAL Limoges</h3>
@@ -120,7 +129,7 @@
             <div class="project-card" data-project-id="proj-motion">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/affiche-motion.jpg" alt="Motion design">
+                <img src="./assets/affiche-motion.jpg" alt="Motion design" width="2000" height="2000" loading="lazy">
               </div>
               <div class="project-info">
                 <h3 class="project-title">Affiche Motion Design</h3>
@@ -132,7 +141,7 @@
             <div class="project-card vertical" data-project-id="proj-affiche">
               <span class="project-badge personnel">Personnel</span>
               <div class="project-image">
-                <img src="./assets/affiche-fabio.png" alt="Création d'affiche" />
+                <img src="./assets/affiche-fabio.jpg" alt="Création d'affiche" width="935" height="1400" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Affiche Fabio Quartararo</h3>
@@ -145,7 +154,7 @@
             <div class="project-card" data-project-id="proj-dating">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/Mycrew.png" alt="Application de rencontre" />
+                <img src="./assets/Mycrew.jpg" alt="Application de rencontre" width="933" height="1400" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Application de rencontre</h3>
@@ -158,7 +167,7 @@
             <div class="project-card" data-project-id="proj-podcast">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/vignette-podcast.png" alt="Vignette de Podcast" />
+                <img src="./assets/vignette-podcast.jpg" alt="Vignette de Podcast" width="1600" height="1600" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Vignette Podcast</h3>
@@ -170,7 +179,7 @@
             <div class="project-card" data-project-id="proj-1">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/Behance.png" alt="Prototype page behance" />
+                <img src="./assets/Behance.jpg" alt="Prototype page behance" width="1800" height="1260" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Prototype page behance</h3>
@@ -182,7 +191,7 @@
             <div class="project-card" data-project-id="proj-5">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/loc'sur.png" alt="Start up fictive - Loc'sur" />
+                <img src="./assets/loc'sur.jpg" alt="Start up fictive - Loc'sur" width="1800" height="1374" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Start up fictive - Loc'sur</h3>
@@ -195,7 +204,7 @@
             <div class="project-card" data-project-id="proj-6">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/SAE2.02.png" alt="Applications de sport" />
+                <img src="./assets/SAE2.02.jpg" alt="Applications de sport" width="1800" height="1200" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Applications de Sport Héméra</h3>
@@ -207,7 +216,7 @@
             <div class="project-card" data-project-id="proj-7">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/site-streaming.png" alt="Site de Streaming" />
+                <img src="./assets/site-streaming.jpg" alt="Site de Streaming" width="1800" height="1182" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Site de Streaming</h3>
@@ -219,7 +228,7 @@
             <div class="project-card" data-project-id="proj-8">
               <span class="project-badge universitaire">Universitaire</span>
               <div class="project-image">
-                <img src="./assets/olive-oil.png" alt="Olive Oil" />
+                <img src="./assets/olive-oil.jpg" alt="Olive Oil" width="1800" height="1350" loading="lazy" />
               </div>
               <div class="project-info">
                 <h3 class="project-title">Olive Oil</h3>
@@ -301,7 +310,7 @@
     </section>
 
   </main>
-  <script src="script.js"></script>
+  <script src="script.js?v=8"></script>
   <script>feather.replace();</script>
 </body>
 
