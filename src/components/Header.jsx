@@ -8,7 +8,7 @@ const LINKS = [
   { id: "contact", label: "Contact" },
 ];
 
-const CV_URL = `${import.meta.env.BASE_URL}assets/CV%20-%20Adrien%20Onillon%20.pdf`;
+const CV_URL = `${import.meta.env.BASE_URL}assets/CV%20-%20Adrien%20Onillon.pdf`;
 
 export default function Header({ page, navigate }) {
   const [open, setOpen] = useState(false);
