@@ -187,6 +187,8 @@ export default function ProjectCarousel({ navigate, paused = false }) {
             >
               <img
                 src={p.thumb}
+                srcSet={p.thumbSet}
+                sizes={`${Math.round(geo.card)}px`}
                 alt=""
                 loading={i < 4 || i > N - 4 ? "eager" : "lazy"}
                 draggable={false}

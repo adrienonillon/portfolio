@@ -351,10 +351,15 @@ const PROJECTS = [
   },
 ];
 
-// Miniature de l'image principale (carrousel, explorateur) : public/assets/miniatures/<même chemin>.webp,
-// générée par scripts/miniatures.py ; l'image en pleine qualité reste utilisée dans la fiche du projet
-const miniature = (url) => url.replace("assets/", "assets/miniatures/").replace(/\.[^./]+$/, ".webp");
+// Miniatures de l'image principale (carrousel, explorateur) : public/assets/miniatures/<même chemin>.webp (720 px)
+// et <même chemin>@360.webp, générées par scripts/miniatures.py ; l'image en pleine qualité reste dans la fiche
+const miniature = (url, suffix = "") => url.replace("assets/", "assets/miniatures/").replace(/\.[^./]+$/, `${suffix}.webp`);
 
-export const projects = PROJECTS.map((p) => ({ ...p, thumb: miniature(p.image) }));
+export const projects = PROJECTS.map((p) => ({
+  ...p,
+  thumb: miniature(p.image),
+  // À passer en srcSet : le navigateur choisit la taille selon l'affichage
+  thumbSet: `${miniature(p.image, "@360")} 360w, ${miniature(p.image)} 720w`,
+}));
 
 export const getProject = (id) => projects.find((p) => p.id === id);
