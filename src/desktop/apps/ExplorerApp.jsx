@@ -112,7 +112,7 @@ export default function ExplorerApp({ filter, setFilter, navigate }) {
                 >
                   <span className={`block aspect-[4/3] rounded-[10px] overflow-hidden border border-line bg-black/30 ${THUMB[view]}`}>
                     <SmartImage
-                      src={p.image}
+                      src={p.thumb}
                       alt=""
                       width={p.width}
                       height={p.height}

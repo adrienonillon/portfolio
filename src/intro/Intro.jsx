@@ -130,7 +130,7 @@ export default function Intro({ onReveal, onDone }) {
         {ready && !diving && !leaving && (
           <motion.div
             key="prompt"
-            className="absolute left-1/2 bottom-[max(2.5rem,6vh)] -translate-x-1/2 flex flex-col items-center gap-4 text-center pointer-events-none"
+            className="absolute left-1/2 bottom-[calc(max(2.5rem,6vh)+env(safe-area-inset-bottom))] -translate-x-1/2 flex flex-col items-center gap-4 text-center pointer-events-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}

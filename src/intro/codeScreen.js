@@ -15,6 +15,8 @@ const LINE_H = 38;
 const TOP = 78;
 const GUTTER = 70;
 const CHARS_PER_SECOND = 38;
+// Le canvas est renvoyé à la carte graphique à chaque redessin : 20 fois par seconde au plus
+const MIN_REDRAW = 1 / 20;
 
 const COLORS = {
   bg: "#0d0a33",
@@ -65,13 +67,16 @@ const PARSED = FILES.map((f) => ({
   Écran d'éditeur de code dessiné dans un <canvas>, utilisé comme texture sur le mesh "Screen".
   flipY : false pour un mesh venant d'un .glb (convention glTF), true pour une géométrie Three.js.
   height : hauteur du canvas en pixels (largeur fixe 1280), à adapter au ratio de l'écran.
+  scale : résolution réelle du canvas (0.5 = moitié moins de pixels), le dessin garde les mêmes proportions.
 */
 export class CodeScreen {
-  constructor({ flipY = true, height = H } = {}) {
+  constructor({ flipY = true, height = H, scale = 1 } = {}) {
     this.height = height;
+    this.scale = scale;
+    this.sinceDraw = 0;
     this.canvas = document.createElement("canvas");
-    this.canvas.width = W;
-    this.canvas.height = height;
+    this.canvas.width = Math.round(W * scale);
+    this.canvas.height = Math.round(height * scale);
     this.ctx = this.canvas.getContext("2d");
     this.texture = new CanvasTexture(this.canvas);
     this.texture.colorSpace = SRGBColorSpace;
@@ -125,7 +130,9 @@ export class CodeScreen {
 
     const cursorOn = Math.floor(this.time * 2) % 2 === 0;
     const key = `${this.file}:${this.line}:${this.char}:${cursorOn}:${this.scroll.toFixed(2)}`;
-    if (key !== this.lastDrawn) {
+    this.sinceDraw += dt;
+    if (key !== this.lastDrawn && this.sinceDraw >= MIN_REDRAW) {
+      this.sinceDraw = 0;
       this.lastDrawn = key;
       this.draw(cursorOn);
       this.texture.needsUpdate = true;
@@ -134,6 +141,7 @@ export class CodeScreen {
 
   draw(cursorOn = true) {
     const { ctx, height: H } = this;
+    ctx.setTransform(this.scale, 0, 0, this.scale, 0, 0);
     const file = PARSED[this.file];
 
     ctx.fillStyle = COLORS.bg;

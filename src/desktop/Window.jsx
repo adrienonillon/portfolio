@@ -209,6 +209,8 @@ export default function Window({ id, title, icon: Icon, index, scrollKey = id, z
     "absolute left-[var(--x,1rem)] top-[var(--y,1rem)] w-[var(--w,min(880px,calc(100%-2rem)))] h-[var(--h,min(640px,calc(100%-2rem)))]",
     "flex flex-col border bg-ink backdrop-blur-[18px] overflow-hidden pointer-events-auto",
     "max-md:left-0 max-md:top-0 max-md:w-full max-md:h-[calc(100%-var(--dock-h))] max-md:rounded-t-none max-md:rounded-b-win max-md:border-t-0",
+    // Plein écran sur mobile : fond opaque plutôt qu'un flou d'arrière-plan (coûteux pendant le défilement)
+    "max-md:backdrop-blur-none max-md:bg-[#0d0a33]",
     focused ? "border-primary/35" : "border-line",
     snap ? "rounded-none" : "rounded-win",
     action ? "select-none" : "",
