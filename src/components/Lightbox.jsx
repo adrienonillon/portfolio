@@ -1,8 +1,15 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "react-feather";
 
-// Visionneuse plein écran : clic / Échap pour fermer, flèches (clavier ou boutons) pour naviguer
+const ROUND_BTN =
+  "absolute flex items-center justify-center size-12 rounded-full border border-line bg-white/8 cursor-pointer transition-colors duration-300 hover:bg-primary hover:border-primary";
+// Flèches centrées verticalement ; en bas de l'écran sur mobile
+const NAV_BTN = "top-1/2 -translate-y-1/2 max-sm:top-auto max-sm:bottom-[0.6rem] max-sm:translate-y-0 max-sm:size-[42px]";
+
+// Visionneuse plein écran : clic / Échap pour fermer, flèches (clavier ou boutons) pour naviguer.
+// Rendue dans <body> pour couvrir tout l'écran même depuis une fenêtre du bureau.
 export default function Lightbox({ items, index, onClose, onChange }) {
   const open = index !== null;
   const item = open ? items[index] : null;
@@ -14,12 +21,8 @@ export default function Lightbox({ items, index, onClose, onChange }) {
       if (e.key === "ArrowRight") onChange((index + 1) % items.length);
       if (e.key === "ArrowLeft") onChange((index - 1 + items.length) % items.length);
     };
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, [open, index, items.length, onClose, onChange]);
 
   const nav = (e, step) => {
@@ -27,11 +30,12 @@ export default function Lightbox({ items, index, onClose, onChange }) {
     onChange((index + step + items.length) % items.length);
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
-          className="lightbox"
+          className="fixed inset-0 z-300 flex items-center justify-center px-[4.5rem] py-16 max-sm:px-3 bg-[rgba(6,4,40,0.94)] backdrop-blur-sm cursor-zoom-out"
+          data-lightbox
           role="dialog"
           aria-modal="true"
           aria-label={item.label}
@@ -45,31 +49,37 @@ export default function Lightbox({ items, index, onClose, onChange }) {
             key={item.image}
             src={item.image}
             alt={item.label}
-            className="lightbox__img"
+            className="max-w-full max-h-full object-contain rounded-lg shadow-[0_30px_80px_rgba(0,0,0,0.6)] cursor-default"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
           />
-          <button className="lightbox__close" onClick={onClose} aria-label="Fermer">
+          <button className={`${ROUND_BTN} top-4 right-4`} onClick={onClose} aria-label="Fermer">
             <X />
           </button>
           {items.length > 1 && (
             <>
-              <button className="lightbox__nav lightbox__nav--prev" onClick={(e) => nav(e, -1)} aria-label="Image précédente">
+              <button className={`${ROUND_BTN} ${NAV_BTN} left-4`} onClick={(e) => nav(e, -1)} aria-label="Image précédente">
                 <ChevronLeft size={28} />
               </button>
-              <button className="lightbox__nav lightbox__nav--next" onClick={(e) => nav(e, 1)} aria-label="Image suivante">
+              <button className={`${ROUND_BTN} ${NAV_BTN} right-4`} onClick={(e) => nav(e, 1)} aria-label="Image suivante">
                 <ChevronRight size={28} />
               </button>
             </>
           )}
-          <p className="lightbox__caption">
+          <p className="absolute bottom-[1.1rem] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.9rem]">
             {item.label}
-            {items.length > 1 && <span> · {index + 1} / {items.length}</span>}
+            {items.length > 1 && (
+              <span className="text-muted">
+                {" "}
+                · {index + 1} / {items.length}
+              </span>
+            )}
           </p>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

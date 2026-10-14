@@ -10,13 +10,18 @@
   },
   "dependencies": {
     "@google/model-viewer": "^4.3.1",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
     "motion": "^12.23.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "three": "^0.183.2"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
     "@vitejs/plugin-react": "^5.0.0",
+    "tailwindcss": "^4.1.11",
     "vite": "^7.1.0"
   }
 }

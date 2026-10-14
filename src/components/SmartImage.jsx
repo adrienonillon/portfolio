@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 // Image qui réserve sa place (pas de saut de mise en page) et apparaît en fondu une fois chargée
-export default function SmartImage({ src, alt, width, height, eager = false, className = "" }) {
+// className : classes de l'image, transition comprise (fondu d'opacité par défaut)
+export default function SmartImage({ src, alt, width, height, eager = false, className = "transition-opacity duration-500" }) {
   const [loaded, setLoaded] = useState(false);
   return (
     <img
@@ -13,7 +14,7 @@ export default function SmartImage({ src, alt, width, height, eager = false, cla
       loading={eager ? "eager" : "lazy"}
       decoding="async"
       onLoad={() => setLoaded(true)}
-      className={`smart-img${loaded ? " is-loaded" : ""} ${className}`}
+      className={`${loaded ? "opacity-100" : "opacity-0"} ${className}`}
     />
   );
 }

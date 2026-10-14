@@ -47,8 +47,8 @@ export default function Typed({ words }) {
   return (
     <>
       <span aria-hidden="true">{text}</span>
-      <span className="typed-cursor" aria-hidden="true">|</span>
-      <span className="visually-hidden">{words.join(", ")}</span>
+      <span className="animate-blink text-primary" aria-hidden="true">|</span>
+      <span className="sr-only">{words.join(", ")}</span>
     </>
   );
 }
