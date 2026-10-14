@@ -1,3 +1,5 @@
+import auroraMobile from "../assets/aurora-mobile.webp";
+
 // Nappes de couleur floues qui forment le fond animé du site
 const SHAPES = [
   "-bottom-[15%] bg-[linear-gradient(45deg,transparent_20%,rgba(83,18,196,0.5)_60%,transparent_90%)] [clip-path:ellipse(85%_45%_at_50%_95%)]",
@@ -12,9 +14,11 @@ const SHAPES = [
 export default function Aurora() {
   return (
     <div className="fixed inset-0 -z-1 overflow-hidden pointer-events-none bg-linear-to-b from-bg to-bg-deep" aria-hidden="true">
+      {/* Mobile : le même fond, mais en image fixe. Sept flous plein écran recalculés à chaque image
+          (ouverture d'une fenêtre, carrousel) font ramer la carte graphique d'un téléphone */}
+      <img src={auroraMobile} alt="" className="md:hidden absolute inset-0 size-full object-cover" />
       {SHAPES.map((shape, i) => {
-        // Flou plus léger sur mobile (7 calques plein écran, coûteux à calculer)
-        const layer = <div key={shape} className={`absolute size-full blur-[55px] max-md:blur-[28px] ${shape}`} />;
+        const layer = <div key={shape} className={`max-md:hidden absolute size-full blur-[55px] ${shape}`} />;
         // Vague (sur ordinateur) : c'est le conteneur qui bouge, le calque flouté est calculé une seule fois
         return i === 0 ? (
           <div key={shape} className="absolute inset-0 md:will-change-transform md:animate-wave">

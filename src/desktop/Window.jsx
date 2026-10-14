@@ -36,6 +36,21 @@ const WINDOW_BTN = "grid place-items-center size-8 rounded-lg text-muted cursor-
 
 // Même seuil que le préfixe Tailwind md: (48rem)
 const isDesktop = () => window.matchMedia("(min-width: 48rem)").matches;
+
+// Ouverture : léger zoom sur ordinateur ; sur mobile glissement + fondu, sans zoom
+// (un zoom oblige Chrome Android à redessiner tout le contenu de la fenêtre pendant l'animation)
+const OPEN_DESKTOP = {
+  initial: { opacity: 0, scale: 0.92, y: 30 },
+  animate: { opacity: 1, scale: 1, y: 0 },
+  exit: { opacity: 0, scale: 0.94, y: 20, transition: { duration: 0.2 } },
+  transition: { type: "spring", stiffness: 380, damping: 32 },
+};
+const OPEN_MOBILE = {
+  initial: { opacity: 0, y: 40 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 30, transition: { duration: 0.18 } },
+  transition: { duration: 0.28, ease: [0.25, 1, 0.5, 1] },
+};
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 
 /*
@@ -87,6 +102,7 @@ function track(e, onMove, onEnd) {
 */
 export default function Window({ id, title, icon: Icon, index, scrollKey = id, z, focused, onFocus, onClose, layerRef, topInset, children }) {
   const size = SIZES[id] ?? DEFAULT_SIZE;
+  const [desktop] = useState(isDesktop);
   const bodyRef = useRef(null);
   const [area, setArea] = useState(null);
   const [frame, setFrame] = useState(() => frameMemory[id]?.frame ?? null);
@@ -236,10 +252,7 @@ export default function Window({ id, title, icon: Icon, index, scrollKey = id, z
         role="dialog"
         aria-label={title}
         onPointerDown={onFocus}
-        initial={{ opacity: 0, scale: 0.92, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.94, y: 20, transition: { duration: 0.2 } }}
-        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+        {...(desktop ? OPEN_DESKTOP : OPEN_MOBILE)}
       >
         <header
           className="shrink-0 flex items-center justify-between pl-4 pr-[0.6rem] py-[0.55rem] bg-white/5 border-b border-line cursor-grab active:cursor-grabbing select-none touch-none max-md:cursor-default max-md:pt-[calc(0.55rem+env(safe-area-inset-top))]"
