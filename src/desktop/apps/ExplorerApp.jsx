@@ -48,7 +48,7 @@ export default function ExplorerApp({ filter, setFilter, navigate }) {
   return (
     <div className="grid grid-cols-[220px_minmax(0,1fr)] min-h-full bg-[linear-gradient(90deg,rgba(255,255,255,0.03)_0_219px,var(--color-line)_219px_220px,transparent_220px)] @max-3xl:grid-cols-[minmax(0,1fr)] @max-3xl:grid-rows-[auto_1fr] @max-3xl:bg-none">
       <aside
-        className="sticky top-0 self-start flex flex-col gap-[0.2rem] px-3 py-[1.1rem] @max-3xl:static @max-3xl:flex-row @max-3xl:gap-[0.35rem] @max-3xl:p-3 @max-3xl:overflow-x-auto @max-3xl:[scrollbar-width:none] @max-3xl:border-b @max-3xl:border-line"
+        className="sticky top-0 self-start flex flex-col gap-[0.2rem] px-3 py-[1.1rem] @max-3xl:static @max-3xl:flex-row @max-3xl:flex-wrap @max-3xl:gap-[0.35rem] @max-3xl:p-3 @max-3xl:border-b @max-3xl:border-line"
         aria-label="Dossiers"
       >
         <p className={`${appLabel} pl-[0.7rem] @max-3xl:hidden`}>Dossiers</p>
