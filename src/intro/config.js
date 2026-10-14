@@ -42,5 +42,9 @@ export const AUTO_ENTER_DELAY = 8;
 // Yeux du personnage dans la scène provisoire : assis devant le bureau, regard sur le clavier
 export const PLACEHOLDER_CAMERA = { position: [0, 1.2, 0.6], target: [0, 0.8, 0.11], fov: 55 };
 
+// Téléphones et tablettes : rendu allégé (résolution, ombres, écran de code)
+export const LOW_POWER =
+  typeof window !== "undefined" && window.matchMedia("(pointer: coarse), (max-width: 48rem)").matches;
+
 // Clé sessionStorage : l'intro n'est jouée qu'une fois par visite
 export const INTRO_SEEN_KEY = "intro-vue";

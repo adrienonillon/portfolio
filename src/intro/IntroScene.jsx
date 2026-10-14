@@ -1,10 +1,11 @@
-import { Suspense, useLayoutEffect, useMemo, useRef } from "react";
+import { Suspense, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { PerformanceMonitor } from "@react-three/drei";
 import { Euler, PerspectiveCamera, Quaternion, Vector3 } from "three";
 import PlaceholderDesk from "./PlaceholderDesk.jsx";
 import ModelDesk from "./ModelDesk.jsx";
 import { getScreenFrame } from "./screenFrame.js";
-import { DIVE_DURATION, HOLD_DURATION, LOOK_UP_DURATION } from "./config.js";
+import { DIVE_DURATION, HOLD_DURATION, LOOK_UP_DURATION, LOW_POWER } from "./config.js";
 
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const easeInOutSine = (t) => -(Math.cos(Math.PI * t) - 1) / 2;
@@ -114,17 +115,23 @@ function CameraRig({ setup, entering, onDiveEnd, fadeRef }) {
   return null;
 }
 
+// Résolution du rendu (× pixels de l'écran) : plafonnée, puis réduite si l'appareil n'arrive pas à suivre
+const MAX_DPR = LOW_POWER ? 1.25 : 1.5;
+
 export default function IntroScene({ useModel, setup, onSetup, entering, onDiveEnd, fadeRef, onClick }) {
+  const [dpr, setDpr] = useState(Math.min(MAX_DPR, window.devicePixelRatio || 1));
   return (
     <Canvas
       className="absolute! inset-0 cursor-pointer"
-      dpr={[1, 1.75]}
-      shadows
+      // Sur mobile : sans ombres ni anticrénelage (l'écran est déjà très dense)
+      dpr={dpr}
+      shadows={!LOW_POWER}
       camera={{ fov: 55, near: 0.01, far: 60 }}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
+      gl={{ antialias: !LOW_POWER, powerPreference: "high-performance" }}
       onClick={onClick}
     >
       <color attach="background" args={["#0a0740"]} />
+      <PerformanceMonitor onDecline={() => setDpr(1)} />
       <Suspense fallback={null}>
         {useModel ? <ModelDesk onSetup={onSetup} /> : <PlaceholderDesk onSetup={onSetup} />}
       </Suspense>

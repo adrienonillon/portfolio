@@ -48,7 +48,7 @@ const THREE_QUARTER = "30deg 75deg auto";
   - models : modèles 3D affichés dans une visionneuse interactive sur la page détail (optionnel)
   - duration / context : optionnels
 */
-export const projects = [
+const PROJECTS = [
   {
     id: "voom-site",
     category: "stage",
@@ -350,5 +350,11 @@ export const projects = [
     ],
   },
 ];
+
+// Miniature de l'image principale (carrousel, explorateur) : public/assets/miniatures/<même chemin>.webp,
+// générée par scripts/miniatures.py ; l'image en pleine qualité reste utilisée dans la fiche du projet
+const miniature = (url) => url.replace("assets/", "assets/miniatures/").replace(/\.[^./]+$/, ".webp");
+
+export const projects = PROJECTS.map((p) => ({ ...p, thumb: miniature(p.image) }));
 
 export const getProject = (id) => projects.find((p) => p.id === id);

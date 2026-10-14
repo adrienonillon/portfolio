@@ -217,7 +217,7 @@ export default function Desktop({ route, navigate, filter, setFilter, onReplayIn
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
           >
-            <ProjectCarousel navigate={navigate} />
+            <ProjectCarousel navigate={navigate} paused={open.length > 0} />
           </motion.div>
         </section>
       </div>

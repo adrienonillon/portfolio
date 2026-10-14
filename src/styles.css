@@ -84,8 +84,9 @@
     display: none;
   }
 
+  /* Même teinte que l'intro et le bas du fond animé : pas de bande d'une autre couleur sous la barre de gestes */
   body {
-    background: var(--color-bg);
+    background: var(--color-bg-deep);
     color: #fff;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;

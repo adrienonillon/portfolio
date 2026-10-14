@@ -18,11 +18,15 @@ const wrap = (deg) => ((((deg + 180) % 360) + 360) % 360) - 180;
   Carrousel 3D (CSS) : les projets tournent en anneau au centre du bureau.
   Glisser pour tourner, cliquer sur une carte la ramène devant, cliquer sur la carte de devant ouvre le projet.
 */
-export default function ProjectCarousel({ navigate }) {
+// paused : une fenêtre est ouverte par-dessus, le carrousel (flouté derrière) arrête de tourner
+export default function ProjectCarousel({ navigate, paused = false }) {
   const reduced = useReducedMotion();
   const stageRef = useRef(null);
   const ringRef = useRef(null);
   const cardRefs = useRef([]);
+  // Dernière opacité écrite pour chaque carte : on ne touche au style que s'il change
+  const cardOpacity = useRef([]);
+  const lastRing = useRef("");
   const angle = useRef(0);
   const velocity = useRef(0);
   const target = useRef(null);
@@ -50,6 +54,8 @@ export default function ProjectCarousel({ navigate }) {
   }, []);
 
   useAnimationFrame((_, delta) => {
+    // En pause, on ne fait que le premier placement des cartes
+    if (paused && lastRing.current) return;
     const dt = Math.min(delta, 50) / 1000;
     if (!drag.current) {
       if (target.current !== null) {
@@ -65,16 +71,23 @@ export default function ProjectCarousel({ navigate }) {
     // L'inclinaison abaisse la carte de devant de R·sin(TILT) et remonte la rangée arrière (vue à mi-taille) :
     // on centre verticalement l'ensemble visible, du haut de la rangée arrière au bas de la carte de devant
     const lift = (geo.radius * TILT_SIN) / 2 + geo.card * 0.094;
-    if (ringRef.current)
-      ringRef.current.style.transform = `translateY(${-lift}px) translateZ(${-geo.radius}px) rotateX(${-TILT}deg) rotateY(${angle.current}deg)`;
+    const ring = `translateY(${-lift}px) translateZ(${-geo.radius}px) rotateX(${-TILT}deg) rotateY(${angle.current.toFixed(3)}deg)`;
+    if (ringRef.current && ring !== lastRing.current) {
+      ringRef.current.style.transform = ring;
+      lastRing.current = ring;
+    }
     let front = 0;
     let best = Infinity;
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
       const rel = wrap(i * STEP + angle.current);
       const facing = Math.cos((rel * Math.PI) / 180);
-      card.style.opacity = String(0.12 + 0.88 * Math.max(0, facing) ** 1.5);
-      card.style.pointerEvents = facing > 0.2 ? "auto" : "none";
+      const opacity = Math.round((0.12 + 0.88 * Math.max(0, facing) ** 1.5) * 100) / 100;
+      if (opacity !== cardOpacity.current[i]) {
+        cardOpacity.current[i] = opacity;
+        card.style.opacity = String(opacity);
+        card.style.pointerEvents = facing > 0.2 ? "auto" : "none";
+      }
       if (Math.abs(rel) < best) {
         best = Math.abs(rel);
         front = i;
@@ -173,7 +186,7 @@ export default function ProjectCarousel({ navigate }) {
               aria-label={`${p.title} — ${CATEGORIES[p.category]}`}
             >
               <img
-                src={p.image}
+                src={p.thumb}
                 alt=""
                 loading={i < 4 || i > N - 4 ? "eager" : "lazy"}
                 draggable={false}
