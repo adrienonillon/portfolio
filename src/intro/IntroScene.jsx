@@ -1,4 +1,4 @@
-import { Suspense, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { PerformanceMonitor } from "@react-three/drei";
 import { Euler, PerspectiveCamera, Quaternion, Vector3 } from "three";
@@ -118,13 +118,38 @@ function CameraRig({ setup, entering, onDiveEnd, fadeRef }) {
 // Résolution du rendu (× pixels de l'écran) : plafonnée, puis réduite si l'appareil n'arrive pas à suivre
 const MAX_DPR = LOW_POWER ? 1.25 : 1.5;
 
-export default function IntroScene({ useModel, setup, onSetup, entering, onDiveEnd, fadeRef, onClick }) {
+/*
+  Compile les shaders de la scène en arrière-plan (sans figer la page) dès que les modèles sont chargés.
+  Sans ça, le premier rendu les compile d'un bloc et bloque le navigateur plus d'une seconde sur mobile.
+*/
+function Precompile({ onDone }) {
+  const { gl, scene, camera } = useThree();
+  useEffect(() => {
+    let alive = true;
+    const done = () => alive && onDone();
+    gl.compileAsync(scene, camera).then(done, done);
+    // Filet de sécurité : si le navigateur ne signale jamais la fin, on démarre quand même
+    const timer = setTimeout(done, 3000);
+    return () => {
+      alive = false;
+      clearTimeout(timer);
+    };
+  }, [gl, scene, camera, onDone]);
+  return null;
+}
+
+/*
+  compiled : shaders prêts ; ready : l'écran de chargement a disparu.
+  Avant compiled, aucun rendu ; entre les deux, rendu à la demande (la scène est cachée) ; ensuite, en continu.
+*/
+export default function IntroScene({ useModel, compiled, onCompiled, ready, setup, onSetup, entering, onDiveEnd, fadeRef, onClick }) {
   const [dpr, setDpr] = useState(Math.min(MAX_DPR, window.devicePixelRatio || 1));
   return (
     <Canvas
       className="absolute! inset-0 cursor-pointer"
       // Sur mobile : sans ombres ni anticrénelage (l'écran est déjà très dense)
       dpr={dpr}
+      frameloop={!compiled ? "never" : ready ? "always" : "demand"}
       shadows={!LOW_POWER}
       camera={{ fov: 55, near: 0.01, far: 60 }}
       gl={{ antialias: !LOW_POWER, powerPreference: "high-performance" }}
@@ -134,6 +159,7 @@ export default function IntroScene({ useModel, setup, onSetup, entering, onDiveE
       <PerformanceMonitor onDecline={() => setDpr(1)} />
       <Suspense fallback={null}>
         {useModel ? <ModelDesk onSetup={onSetup} /> : <PlaceholderDesk onSetup={onSetup} />}
+        <Precompile onDone={onCompiled} />
       </Suspense>
       <CameraRig setup={setup} entering={entering} onDiveEnd={onDiveEnd} fadeRef={fadeRef} />
     </Canvas>

@@ -42,6 +42,8 @@ function markSeen() {
 export default function Intro({ onReveal, onDone }) {
   const [useModel, setUseModel] = useState(null);
   const [setup, setSetup] = useState(null);
+  const [compiled, setCompiled] = useState(false);
+  const onCompiled = useCallback(() => setCompiled(true), []);
   const [fontsReady, setFontsReady] = useState(false);
   const [ready, setReady] = useState(false);
   const [diving, setDiving] = useState(false);
@@ -59,7 +61,7 @@ export default function Intro({ onReveal, onDone }) {
   }, []);
 
   // Tout est prêt (modèles, textures, polices, scène montée) : la barre finit de se remplir, puis on révèle
-  const loaded = Boolean(setup) && fontsReady;
+  const loaded = Boolean(setup) && compiled && fontsReady;
   useEffect(() => {
     if (!loaded) return;
     const timer = setTimeout(() => setReady(true), LOADER_OUTRO);
@@ -67,7 +69,7 @@ export default function Intro({ onReveal, onDone }) {
   }, [loaded]);
 
   // Progression : 10 % (code de l'intro) + 80 % (fichiers 3D) + 5 % (polices) + 5 % (scène montée)
-  const loadPct = loaded ? 100 : 10 + (useModel === null ? 0 : progress * 0.8) + (fontsReady ? 5 : 0) + (setup ? 5 : 0);
+  const loadPct = loaded ? 100 : 10 + (useModel === null ? 0 : progress * 0.8) + (fontsReady ? 5 : 0) + (setup && compiled ? 5 : 0);
   let loadLabel = "Préparation de la scène";
   if (loaded) loadLabel = "Prêt";
   else if (useModel === null) loadLabel = "Initialisation";
@@ -115,6 +117,9 @@ export default function Intro({ onReveal, onDone }) {
       {useModel !== null && (
         <IntroScene
           useModel={useModel}
+          ready={ready}
+          compiled={compiled}
+          onCompiled={onCompiled}
           setup={setup}
           onSetup={setSetup}
           entering={diving}

@@ -36,12 +36,33 @@ export default function App() {
   // intro → reveal (le bureau apparaît sous l'intro qui s'efface) → done
   const [introPhase, setIntroPhase] = useState(() => (shouldPlayIntro(route.page) ? "intro" : "done"));
 
+  // L'intro (Three.js + modèles 3D, ~1 Mo) n'est téléchargée qu'une fois la page affichée et chargée :
+  // l'écran de chargement apparaît tout de suite, sans attendre ces gros fichiers
+  const [pageLoaded, setPageLoaded] = useState(() => document.readyState === "complete");
+  useEffect(() => {
+    if (pageLoaded) return;
+    let timer;
+    const onLoad = () => (timer = setTimeout(() => setPageLoaded(true), 100));
+    // La page a pu finir de charger entre le premier rendu et cet effet : l'événement serait déjà passé
+    if (document.readyState === "complete") onLoad();
+    else window.addEventListener("load", onLoad, { once: true });
+    return () => {
+      window.removeEventListener("load", onLoad);
+      clearTimeout(timer);
+    };
+  }, [pageLoaded]);
+
   const project = route.page === "projet" ? getProject(route.id) : null;
   useEffect(() => {
     if (route.page === "projet" && !project) navigate("projets");
   }, [route.page, project, navigate]);
 
   const showDesktop = introPhase !== "intro";
+  const introLoader = (
+    <div className="fixed inset-0 z-500 bg-bg-deep">
+      <Loader progress={0} label="Initialisation" />
+    </div>
+  );
 
   return (
     <MotionConfig reducedMotion="user">
@@ -61,17 +82,14 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {introPhase !== "done" && (
-        <Suspense
-          fallback={
-            <div className="fixed inset-0 z-500 bg-bg-deep">
-              <Loader progress={0} label="Initialisation" />
-            </div>
-          }
-        >
-          <Intro onReveal={() => setIntroPhase("reveal")} onDone={() => setIntroPhase("done")} />
-        </Suspense>
-      )}
+      {introPhase !== "done" &&
+        (pageLoaded ? (
+          <Suspense fallback={introLoader}>
+            <Intro onReveal={() => setIntroPhase("reveal")} onDone={() => setIntroPhase("done")} />
+          </Suspense>
+        ) : (
+          introLoader
+        ))}
     </MotionConfig>
   );
 }

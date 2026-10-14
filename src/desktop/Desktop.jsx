@@ -200,7 +200,7 @@ export default function Desktop({ route, navigate, filter, setFilter, onReplayIn
             légende + flèches (centrées entre le carrousel et le dock) */}
         <section
           className={`flex-1 min-w-0 flex flex-col items-center px-4 pt-[clamp(0.75rem,3vh,2rem)] pb-5 transition-[opacity,filter] duration-400 ease-soft max-md:grid max-md:grid-rows-[1fr_auto_1fr] max-md:justify-items-stretch max-md:px-0 max-md:pt-[env(safe-area-inset-top)] max-md:pb-(--dock-h) ${
-            open.length ? "opacity-35 blur-[3px]" : ""
+            open.length ? "opacity-35 blur-[3px] max-md:invisible" : ""
           }`}
         >
           <motion.div className="flex flex-col items-center gap-[0.4rem] text-center max-md:self-center max-md:px-14" {...drop(2)}>
