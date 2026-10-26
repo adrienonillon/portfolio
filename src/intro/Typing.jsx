@@ -15,6 +15,9 @@ export const TYPING_MODEL = `${import.meta.env.BASE_URL}assets/3d/frappe.glb`;
 // Couleurs de la manche et de la peau (faites par nœuds dans Blender, elles ne s'exportent pas), par nom de matériau
 const ARM_COLORS = { Tissu_Bleu: "#3b5ba8", Peau: "#e8b598" };
 
+// Vitesse de frappe : 1 = vitesse de l'animation Blender, 1.5 = 50 % plus rapide
+const TYPING_SPEED = 1.5;
+
 export default function Typing({ position }) {
   const { scene, animations } = useGLTF(TYPING_MODEL);
   const { actions } = useAnimations(animations, scene);
@@ -34,7 +37,7 @@ export default function Typing({ position }) {
 
   useEffect(() => {
     const action = actions.Frappe;
-    action?.reset().play();
+    action?.reset().setEffectiveTimeScale(TYPING_SPEED).play();
     return () => action?.stop();
   }, [actions]);
 

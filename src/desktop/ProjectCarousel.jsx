@@ -16,7 +16,7 @@ const wrap = (deg) => ((((deg + 180) % 360) + 360) % 360) - 180;
 
 /*
   Carrousel 3D (CSS) : les projets tournent en anneau au centre du bureau.
-  Glisser pour tourner, cliquer sur une carte la ramène devant, cliquer sur la carte de devant ouvre le projet.
+  Glisser pour tourner, cliquer sur une carte ouvre le projet. Le survol d'une carte (souris) arrête la rotation.
 */
 // paused : une fenêtre est ouverte par-dessus, le carrousel (flouté derrière) arrête de tourner
 export default function ProjectCarousel({ navigate, paused = false }) {
@@ -150,8 +150,6 @@ export default function ProjectCarousel({ navigate, paused = false }) {
           target.current = null;
           suppressClick.current = false;
         }}
-        onPointerEnter={(e) => e.pointerType === "mouse" && (hovering.current = true)}
-        onPointerLeave={() => (hovering.current = false)}
         onWheel={(e) => {
           target.current = null;
           velocity.current -= (e.deltaX || e.deltaY) * 0.4;
@@ -177,11 +175,14 @@ export default function ProjectCarousel({ navigate, paused = false }) {
               }`}
               style={{ transform: `rotateY(${i * STEP}deg) translateZ(${geo.radius}px)` }}
               draggable={false}
-              onFocus={() => goTo(i)}
+              onPointerEnter={(e) => e.pointerType === "mouse" && (hovering.current = true)}
+              onPointerLeave={() => (hovering.current = false)}
+              // Navigation au clavier (Tab) : la carte atteinte vient devant ; pas au clic, qui ouvre directement le projet
+              onFocus={(e) => e.currentTarget.matches(":focus-visible") && goTo(i)}
               onClick={(e) => {
                 e.preventDefault();
-                if (i === activeRef.current) navigate(`projet-${p.id}`);
-                else goTo(i);
+                hovering.current = false;
+                navigate(`projet-${p.id}`);
               }}
               aria-label={`${p.title} — ${CATEGORIES[p.category]}`}
             >
