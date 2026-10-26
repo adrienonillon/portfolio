@@ -2,8 +2,7 @@ import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { PerformanceMonitor } from "@react-three/drei";
 import { Euler, PerspectiveCamera, Quaternion, Vector3 } from "three";
-import PlaceholderDesk from "./PlaceholderDesk.jsx";
-import ModelDesk from "./ModelDesk.jsx";
+import DeskScene from "./DeskScene.jsx";
 import { getScreenFrame } from "./screenFrame.js";
 import { DIVE_DURATION, HOLD_DURATION, LOOK_UP_DURATION, LOW_POWER } from "./config.js";
 
@@ -142,7 +141,7 @@ function Precompile({ onDone }) {
   compiled : shaders prêts ; ready : l'écran de chargement a disparu.
   Avant compiled, aucun rendu ; entre les deux, rendu à la demande (la scène est cachée) ; ensuite, en continu.
 */
-export default function IntroScene({ useModel, compiled, onCompiled, ready, setup, onSetup, entering, onDiveEnd, fadeRef, onClick }) {
+export default function IntroScene({ compiled, onCompiled, ready, setup, onSetup, entering, onDiveEnd, fadeRef, onClick }) {
   const [dpr, setDpr] = useState(Math.min(MAX_DPR, window.devicePixelRatio || 1));
   return (
     <Canvas
@@ -158,7 +157,7 @@ export default function IntroScene({ useModel, compiled, onCompiled, ready, setu
       <color attach="background" args={["#0a0740"]} />
       <PerformanceMonitor onDecline={() => setDpr(1)} />
       <Suspense fallback={null}>
-        {useModel ? <ModelDesk onSetup={onSetup} /> : <PlaceholderDesk onSetup={onSetup} />}
+        <DeskScene onSetup={onSetup} />
         <Precompile onDone={onCompiled} />
       </Suspense>
       <CameraRig setup={setup} entering={entering} onDiveEnd={onDiveEnd} fadeRef={fadeRef} />

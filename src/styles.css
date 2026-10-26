@@ -17,7 +17,7 @@
 }
 @font-face {
   font-family: "Novaro";
-  src: url("./fonts/novaro.otf") format("opentype");
+  src: url("./fonts/novaro.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

@@ -8,4 +8,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   // retire les console.log de débogage (model-viewer 4.3.1 en laisse dans sa version publiée)
   esbuild: { pure: ["console.log"] },
+  // three.js (~730 Ko) forme un fichier à part, chargé seulement par l'intro et la galerie 3D
+  build: { chunkSizeWarningLimit: 800 },
 });

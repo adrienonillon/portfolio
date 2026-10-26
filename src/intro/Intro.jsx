@@ -5,17 +5,7 @@ import { CornerDownLeft, FastForward } from "react-feather";
 import IntroScene from "./IntroScene.jsx";
 import Loader from "../components/Loader.jsx";
 import { cta } from "../ui.js";
-import { AUTO_ENTER_DELAY, INTRO_MODEL, INTRO_SEEN_KEY } from "./config.js";
-
-// Utilise intro.glb s'il existe, sinon la scène provisoire
-async function modelExists() {
-  try {
-    const res = await fetch(INTRO_MODEL, { method: "HEAD" });
-    return res.ok && !(res.headers.get("content-type") ?? "").includes("text/html");
-  } catch {
-    return false;
-  }
-}
+import { AUTO_ENTER_DELAY, INTRO_SEEN_KEY } from "./config.js";
 
 // Polices du site (titre, texte, code) chargées avant de lever le rideau, pour éviter tout saut d'affichage
 function loadFonts() {
@@ -40,7 +30,6 @@ function markSeen() {
   onReveal : le bureau peut s'afficher sous l'intro ; onDone : l'intro peut être démontée.
 */
 export default function Intro({ onReveal, onDone }) {
-  const [useModel, setUseModel] = useState(null);
   const [setup, setSetup] = useState(null);
   const [compiled, setCompiled] = useState(false);
   const onCompiled = useCallback(() => setCompiled(true), []);
@@ -53,7 +42,6 @@ export default function Intro({ onReveal, onDone }) {
 
   useEffect(() => {
     let alive = true;
-    modelExists().then((exists) => alive && setUseModel(exists));
     loadFonts().then(() => alive && setFontsReady(true));
     return () => {
       alive = false;
@@ -69,10 +57,9 @@ export default function Intro({ onReveal, onDone }) {
   }, [loaded]);
 
   // Progression : 10 % (code de l'intro) + 80 % (fichiers 3D) + 5 % (polices) + 5 % (scène montée)
-  const loadPct = loaded ? 100 : 10 + (useModel === null ? 0 : progress * 0.8) + (fontsReady ? 5 : 0) + (setup && compiled ? 5 : 0);
+  const loadPct = loaded ? 100 : 10 + progress * 0.8 + (fontsReady ? 5 : 0) + (setup && compiled ? 5 : 0);
   let loadLabel = "Préparation de la scène";
   if (loaded) loadLabel = "Prêt";
-  else if (useModel === null) loadLabel = "Initialisation";
   else if (progress < 100) loadLabel = "Chargement de la scène 3D";
   else if (!fontsReady) loadLabel = "Chargement des polices";
 
@@ -114,20 +101,17 @@ export default function Intro({ onReveal, onDone }) {
       transition={{ duration: 0.7, ease: "easeOut" }}
       onAnimationComplete={() => leaving && onDone()}
     >
-      {useModel !== null && (
-        <IntroScene
-          useModel={useModel}
-          ready={ready}
-          compiled={compiled}
-          onCompiled={onCompiled}
-          setup={setup}
-          onSetup={setSetup}
-          entering={diving}
-          onDiveEnd={leave}
-          fadeRef={fadeRef}
-          onClick={enter}
-        />
-      )}
+      <IntroScene
+        ready={ready}
+        compiled={compiled}
+        onCompiled={onCompiled}
+        setup={setup}
+        onSetup={setSetup}
+        entering={diving}
+        onDiveEnd={leave}
+        fadeRef={fadeRef}
+        onClick={enter}
+      />
       <div ref={fadeRef} className="absolute inset-0 bg-bg opacity-0 pointer-events-none" />
 
       <AnimatePresence>
